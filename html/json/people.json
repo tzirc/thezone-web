@@ -10,7 +10,7 @@
 	{
 		"glyph": "SY",
 		"name": "Syber",
-		"role": "Founder / admining them lane bryants",
+		"role": "Founder / Admining them lane bryants",
 		"description": "Founder of #TheZone, owner of the domains, and the person behind the old site's perfectly dry welcome copy. Hilarious on purpose, usually.",
 		"bot": false,
 		"order": 110
@@ -18,15 +18,15 @@
 	{
 		"glyph": "DX",
 		"name": "Darc",
-		"role": "Network / archives / Bible nerd / pilot",
-		"description": "Ask about TheZone history, DarcFX, the file archive, Bible nerdery, flying, or where some ancient thing ended up living.",
+		"role": "Admin / Web Ninja / Pilot / Bible nerd",
+		"description": "Ask about #TheZone history, DarcFX, the file archive, flying, Bible nerdery, or where some ancient thing ended up living.",
 		"bot": false,
 		"order": 120
 	},
 	{
 		"glyph": "AM",
 		"name": "Amber",
-		"role": "Zoner",
+		"role": "Op / Zoner",
 		"description": "Another familiar name for newcomers to recognize before they jump into the scrollback.",
 		"bot": false,
 		"order": 200

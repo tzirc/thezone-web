@@ -16,8 +16,9 @@ People render by `order` from low to high. Entries with the same `order` are shu
 
 ## Features
 
-* Capslock Wednesday mode runs every Wednesday from 5-6pm ET. During CLW, the CLW section, header brand, and primary nav text switch to uppercase.
-* CLW can be forced for testing with `?clw=1` or from the console with `clw(true)`. Use `clw(false)` to force it off.
+* Capslock Wednesday mode runs every Wednesday from 5-6pm ET. It recalculates once per second, so it turns on and off automatically without a reload.
+* During CLW, the CLW section, header brand, and primary nav text switch to uppercase. The CLW countdown changes to `ITS HERE!` with a restrained red pulse.
+* CLW can be forced for testing with `?clw=1` or from the console with `clw(true)`. Use `clw(false)` to force it off. Manual/query overrides win over the live schedule until the page reloads or the console function changes the override.
 * Double-click the large terminal logo to spin it like a top. When the spin finishes, the logo swaps between the current and original logo.
 * Kick Lotto has a live hourly countdown, copyable `!klstats` command pills, and a live last-24-hours stats panel from `klstats.tzirc.com`.
 * The mobile nav opens as a full-viewport blurred overlay instead of pushing the page down.
