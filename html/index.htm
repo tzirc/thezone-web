@@ -582,10 +582,21 @@
 			margin-top: 16px;
 		}
 
+		.command-copy {
+			display: inline-flex;
+			align-items: center;
+			min-height: 42px;
+			padding: 0;
+			border: 0;
+			border-radius: 999px;
+			background: transparent;
+			cursor: pointer;
+		}
+
 		.command-list code {
 			display: inline-flex;
 			align-items: center;
-			min-height: 34px;
+			min-height: 42px;
 			padding: 0 10px;
 			border: 1px solid rgba(104, 228, 255, 0.28);
 			border-radius: 999px;
@@ -593,6 +604,13 @@
 			color: #dff9ff;
 			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 			font-size: 0.82rem;
+		}
+
+		.command-copy:hover code,
+		.command-copy.copied code {
+			border-color: rgba(255, 159, 26, 0.68);
+			background: rgba(255, 159, 26, 0.14);
+			color: var(--ink);
 		}
 
 		.lotto-sample {
@@ -1113,9 +1131,9 @@
 
 				<div class="stats-board" aria-label="Live Kick Lotto stats">
 					<div class="ritual">
-						<p class="label">How it works</p>
+						<p class="label">IRC only / How it works</p>
 						<h3>At the top of every hour, Botto picks a winner.</h3>
-						<p>The channel bot picks a random nick from #TheZone and kicks them. Most people have auto-rejoin enabled, so they pop right back in. No harm, no foul.</p>
+						<p>The channel bot picks a random nick from #TheZone on IRC and kicks them. Most people have auto-rejoin enabled, so they pop right back in. Probably.</p>
 						<p>The kicks have been logged since 2008, and it turned into a scoreboard. People want to win because every kick increases their kickstats.</p>
 						<div class="lotto-sample" aria-label="Kick Lotto example">
 							<span><b>@Botto</b> Ladies and Gentlemen, #thezone's hourly Kick Lottery has begun!!!</span>
@@ -1126,8 +1144,13 @@
 							<span class="event">* YOU joined #TheZone</span>
 						</div>
 						<div class="command-list" aria-label="Kick Lotto commands">
-							<code>!klstats top10</code>
-							<code>!klstats top10 all</code>
+							<button class="command-copy" type="button" data-copy-command="!klstats top10" title="Copy">
+								<code>!klstats top10</code>
+							</button>
+							<button class="command-copy" type="button" data-copy-command="!klstats top10 all" title="Copy">
+								<code>!klstats top10 all</code>
+							</button>
+							<a class="button primary" href="ircs://irc.tzirc.com:6697/thezone" title="Launches IRC">Play the Lotto!</a>
 						</div>
 					</div>
 					<div class="stats-panel">
@@ -1172,121 +1195,23 @@
 					<div>
 						<p class="label">People you will probably see</p>
 						<h2 id="people-title">A few names to start with.</h2>
-						<p>IRC is easier when some handles are already familiar. Ops, regulars, bots, and old friends all share the same room.</p>
+						<p>IRC is easier when some handles are already familiar. Ops, Zoners, bots, and old friends all share the same room.</p>
 					</div>
 					<a class="button" href="ircs://irc.tzirc.com:6697/thezone">Say hello</a>
 				</div>
 
 				<div class="people-grid" data-people-grid>
-					<div class="person">
-						<div class="glyph">SY</div>
-						<h3>Syber</h3>
-						<p class="role">Original owner / programming legend</p>
-						<p>Partner in crime, owner of the domains, and the person behind the old site's perfectly dry welcome copy. Hilarious on purpose, usually.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">DX</div>
-						<h3>Darc</h3>
-						<p class="role">Network / archives / Bible nerd / pilot</p>
-						<p>Ask about TheZone history, DarcFX, the file archive, Bible nerdery, flying, or where some ancient thing ended up living.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">BT</div>
-						<h3>Botto</h3>
-						<p class="role">Bot / channel machinery</p>
-						<p>Kick Lotto, stats, announcements, and the occasional ceremonial removal. Not staff. Definitely part of the furniture.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">SL</div>
-						<h3>sloat</h3>
-						<p class="role">Regular / Kick Lotto legend</p>
-						<p>Evidence that winning sometimes looks like getting kicked.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">BY</div>
-						<h3>betrayed</h3>
-						<p class="role">Op / regular</p>
-						<p>One of the names you will see holding down the room, quietly accumulating kickstats like everyone else with taste.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">BL</div>
-						<h3>Belial</h3>
-						<p class="role">Op / regular</p>
-						<p>Long-running #TheZone presence, Kick Lotto veteran, and one of the handles newcomers will see early.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">DN</div>
-						<h3>Dennis</h3>
-						<p class="role">Regular / formerly Neo</p>
-						<p>Had the nick before the movie made it complicated, got salty, and abandoned it. Technically still The One.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">BD</div>
-						<h3>bud</h3>
-						<p class="role">Regular / all-time board fixture</p>
-						<p>Longtime #TheZone presence and still parked high enough on the Kick Lotto board to haunt the current generation.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">FT</div>
-						<h3>fatal</h3>
-						<p class="role">Regular</p>
-						<p>Part of the extended #TheZone orbit: old handles, old jokes, and the kind of continuity IRC is good at preserving.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">KS</div>
-						<h3>Katie</h3>
-						<p class="role">Regular / renamed into destiny</p>
-						<p>A guy everyone kept renaming to Katie until it stuck, which is probably the most IRC origin story possible.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">RZ</div>
-						<h3>Raelz</h3>
-						<p class="role">Regular</p>
-						<p>Another familiar handle in the room, which is half the point: show up enough and the nicklist becomes a neighborhood.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">PR</div>
-						<h3>pre</h3>
-						<p class="role">Regular</p>
-						<p>One of the names in the long-running cast, because a good IRC channel is mostly accumulated context with timestamps.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">OL</div>
-						<h3>olive</h3>
-						<p class="role">Regular</p>
-						<p>Part of the #TheZone people layer: present in the room, present in the lore, and probably in somebody's logs.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">JN</div>
-						<h3>jenn</h3>
-						<p class="role">Regular</p>
-						<p>Another familiar name for newcomers to recognize before they jump into the scrollback.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">TD</div>
-						<h3>thadood</h3>
-						<p class="role">Regular / antirap</p>
-						<p>thadood antirap. Some channel lore is best introduced exactly as it arrived.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">ZS</div>
-						<h3>ZoneServ</h3>
-						<p class="role">Service bot / basically ChanServ</p>
-						<p>Channel services with a local badge. Useful, official-looking, and somehow number one all-time in Kick Lotto.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">BK</div>
-						<h3>Bender + Karlton_</h3>
-						<p class="role">Bots / IRC-to-Discord bridge</p>
-						<p>Karlton_ is the other side of karl_, the bot sitting in #TheZone on Discord. Together they connect the Discord side to the IRC side.</p>
-					</div>
-					<div class="person">
-						<div class="glyph">OP</div>
-						<h3>Ops</h3>
-						<p class="role">Channel staff</p>
-						<p>Look for the op list when you need help with the room itself. Otherwise, just jump in like a normal person.</p>
-					</div>
+					<p class="stats-meta" data-people-status>Loading people...</p>
 				</div>
+				<template data-person-template>
+					<div class="person">
+						<div class="glyph"></div>
+						<h3></h3>
+						<p class="role"></p>
+						<p class="bio"></p>
+						<pre hidden></pre>
+					</div>
+				</template>
 				<div class="people-actions">
 					<button class="button" type="button" data-people-toggle hidden>Show more</button>
 				</div>
@@ -1473,6 +1398,31 @@
 				});
 			}
 
+			document.querySelectorAll("[data-copy-command]").forEach((button) => {
+				const code = button.querySelector("code");
+				const command = button.dataset.copyCommand;
+
+				if (!code || !command) {
+					return;
+				}
+
+				button.addEventListener("click", async () => {
+					try {
+						await navigator.clipboard.writeText(command);
+					} catch (error) {
+						return;
+					}
+
+					code.textContent = "copied!";
+					button.classList.add("copied");
+
+					window.setTimeout(() => {
+						code.textContent = command;
+						button.classList.remove("copied");
+					}, 900);
+				});
+			});
+
 			// Spin on dblclick. Because Darc is weird and apparently needs easter eggs.
 			const terminalLogos = document.querySelectorAll(".orbit-wrap .logo");
 			if (terminalLogos.length > 0) {
@@ -1514,10 +1464,12 @@
 
 			const peopleGrid = document.querySelector("[data-people-grid]");
 			const peopleToggle = document.querySelector("[data-people-toggle]");
+			const peopleTemplate = document.querySelector("[data-person-template]");
+			const peopleStatus = document.querySelector("[data-people-status]");
 
-			if (peopleGrid && peopleToggle) {
-				const cards = Array.from(peopleGrid.querySelectorAll(".person"));
+			if (peopleGrid && peopleToggle && peopleTemplate) {
 				let expanded = false;
+				let peopleCards = [];
 
 				const previewCount = () => {
 					if (window.matchMedia("(max-width: 680px)").matches) {
@@ -1533,13 +1485,79 @@
 
 				const updatePeople = () => {
 					const visibleCount = previewCount();
-					cards.forEach((card, index) => {
+					peopleCards.forEach((card, index) => {
 						card.hidden = !expanded && index >= visibleCount;
 					});
 
-					peopleToggle.hidden = cards.length <= visibleCount;
-					peopleToggle.textContent = expanded ? "Show fewer" : `Show ${cards.length - visibleCount} more`;
+					peopleToggle.hidden = peopleCards.length <= visibleCount;
+					peopleToggle.textContent = expanded ? "Show fewer" : `Show ${peopleCards.length - visibleCount} more`;
 					peopleToggle.setAttribute("aria-expanded", String(expanded));
+				};
+
+				const orderedPeople = (people) => {
+					const groups = people.reduce((allGroups, person) => {
+						const order = person.order || 500;
+						if (!allGroups.has(order)) {
+							allGroups.set(order, []);
+						}
+
+						allGroups.get(order).push(person);
+						return allGroups;
+					}, new Map());
+
+					return Array.from(groups.entries())
+						.sort(([orderA], [orderB]) => orderA - orderB)
+						.flatMap(([, group]) => group
+							.map((person) => ({ person, sort: Math.random() }))
+							.sort((a, b) => a.sort - b.sort)
+							.map(({ person }) => person));
+				};
+
+				const renderPeople = (people) => {
+					const sortedPeople = orderedPeople(people);
+					const cards = sortedPeople.map((person) => {
+						const card = peopleTemplate.content.firstElementChild.cloneNode(true);
+						const glyph = card.querySelector(".glyph");
+						const name = card.querySelector("h3");
+						const role = card.querySelector(".role");
+						const bio = card.querySelector(".bio");
+						const command = card.querySelector("pre");
+
+						glyph.textContent = person.glyph || "";
+						name.textContent = person.name || "";
+						role.textContent = person.role || "";
+						bio.textContent = person.description || "";
+
+						if (person.bot) {
+							card.dataset.bot = "true";
+						}
+
+						if (person.command) {
+							command.hidden = false;
+							command.textContent = person.command;
+						}
+
+						return card;
+					});
+
+					peopleGrid.replaceChildren(...cards);
+					peopleCards = cards;
+					updatePeople();
+				};
+
+				const loadPeople = async () => {
+					try {
+						const response = await fetch("/json/people.json", { headers: { Accept: "application/json" } });
+						if (!response.ok) {
+							throw new Error(`People returned ${response.status}`);
+						}
+
+						renderPeople(await response.json());
+					} catch (error) {
+						if (peopleStatus) {
+							peopleStatus.textContent = "People could not be loaded.";
+						}
+					}
 				};
 
 				peopleToggle.addEventListener("click", () => {
@@ -1548,7 +1566,7 @@
 				});
 
 				window.addEventListener("resize", updatePeople);
-				updatePeople();
+				loadPeople();
 			}
 
 			const begin24h = new Date(Date.now() - 86400000).toISOString().slice(0, 16);

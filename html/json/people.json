@@ -1,0 +1,243 @@
+[
+	{
+		"glyph": "BT",
+		"name": "Botto",
+		"role": "Bot / channel machinery",
+		"description": "Kick Lotto, stats, announcements, and the occasional ceremonial removal. Not staff. Definitely part of the furniture.",
+		"bot": true,
+		"order": 100
+	},
+	{
+		"glyph": "SY",
+		"name": "Syber",
+		"role": "Founder / admining them lane bryants",
+		"description": "Founder of #TheZone, owner of the domains, and the person behind the old site's perfectly dry welcome copy. Hilarious on purpose, usually.",
+		"bot": false,
+		"order": 110
+	},
+	{
+		"glyph": "DX",
+		"name": "Darc",
+		"role": "Network / archives / Bible nerd / pilot",
+		"description": "Ask about TheZone history, DarcFX, the file archive, Bible nerdery, flying, or where some ancient thing ended up living.",
+		"bot": false,
+		"order": 120
+	},
+	{
+		"glyph": "JN",
+		"name": "Amber",
+		"role": "Zoner",
+		"description": "Another familiar name for newcomers to recognize before they jump into the scrollback.",
+		"bot": false,
+		"order": 200
+	},
+	{
+		"glyph": "BL",
+		"name": "Belial",
+		"role": "Op / Zoner",
+		"description": "Long-running #TheZone presence, Kick Lotto veteran, and one of the handles newcomers will see early.",
+		"bot": false,
+		"order": 200
+	},
+	{
+		"glyph": "BY",
+		"name": "betrayed",
+		"role": "Op / Zoner",
+		"description": "One of the names you will see holding down the room, quietly accumulating kickstats like everyone else with taste.",
+		"bot": false,
+		"order": 200
+	},
+	{
+		"glyph": "SL",
+		"name": "sloat",
+		"role": "Zoner / Kick Lotto legend",
+		"description": "Evidence that winning sometimes looks like getting kicked.",
+		"bot": false,
+		"order": 200
+	},
+	{
+		"glyph": "DN",
+		"name": "Dennis",
+		"role": "Op / Zoner / formerly Neo",
+		"description": "Had the nick Neo before The Matrix made it complicated. Abandoned it. Technically still The One.",
+		"bot": false,
+		"order": 200
+	},
+	{
+		"glyph": "BD",
+		"name": "bud",
+		"role": "Zoner / all-time board fixture",
+		"description": "Longtime #TheZone presence and still parked high enough on the Kick Lotto board to haunt the current generation.",
+		"bot": false,
+		"order": 300
+	},
+	{
+		"glyph": "TD",
+		"name": "thadood",
+		"role": "antirap / Zoner",
+		"description": "Some channel lore is best introduced exactly as it arrived. As the myth goes, he used to look like Jesus. Might still.",
+		"bot": false,
+		"order": 400
+	},
+	{
+		"glyph": "OZ",
+		"name": "ozzy",
+		"role": "Zoner",
+		"description": "Present-day #TheZone regular: in the room, in the scrollback, and part of the current signal.",
+		"bot": false,
+		"order": 500
+	},
+	{
+		"glyph": "KT",
+		"name": "KTB",
+		"role": "Zoner",
+		"description": "A current #TheZone presence and one of the names newcomers are likely to see in the nicklist.",
+		"bot": false,
+		"order": 500
+	},
+	{
+		"glyph": "DOS",
+		"name": "dos",
+		"role": "Co-founder / Chief Zoner of Legend",
+		"description": "Hasn't been around in a long while, but his fingerprints are still in the old #TheZone lore. Some handles become load-bearing history.",
+		"bot": false,
+		"order": 600
+	},
+	{
+		"glyph": "OL",
+		"name": "olive",
+		"role": "Zoner",
+		"description": "Part of the #TheZone people layer: present in the room, present in the lore, and probably in somebody's logs.",
+		"bot": false,
+		"order": 600
+	},
+	{
+		"glyph": "KS",
+		"name": "Katie",
+		"role": "Zoner / renamed into destiny",
+		"description": "Originally Kaie. But everyone kept renaming Katie until it stuck, which is probably the most IRC origin story possible.",
+		"bot": false,
+		"order": 600
+	},
+	{
+		"glyph": "FT",
+		"name": "fatal",
+		"role": "Zoner of Legend",
+		"description": "Part of the extended #TheZone orbit: old handles, old jokes, and the kind of continuity IRC is good at preserving.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "RZ",
+		"name": "Raelz",
+		"role": "Zoner of Legend",
+		"description": "Another familiar handle in the room, which is half the point: show up enough and the nicklist becomes a neighborhood.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "PR",
+		"name": "pre",
+		"role": "Zoner of Legend",
+		"description": "One of the names in the long-running cast, because a good IRC channel is mostly accumulated context with timestamps.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "MC",
+		"name": "mc",
+		"role": "Zoner of Legend",
+		"description": "An old-school handle from the deep scrollback. The kind of nick that makes longtime Zoners pause and grin.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "FW",
+		"name": "Funkwheat",
+		"role": "Zoner of Legend",
+		"description": "A vintage #TheZone name with the exact amount of weird built in. Respectfully unforgettable.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "KB",
+		"name": "kaboofa",
+		"role": "Zoner of Legend",
+		"description": "One of those names that could only have come from IRC and somehow still sounds right decades later.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "RS",
+		"name": "Russ",
+		"role": "Zoner of Legend",
+		"description": "Part of the old cast: remembered less like a username and more like someone who had a regular seat. Might have been the only real name.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "SH",
+		"name": "Shaft",
+		"role": "Zoner of Legend",
+		"description": "A classic handle from the era when the nicklist was half social map, half folklore.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "CP",
+		"name": "cipher",
+		"role": "Zoner of Legend",
+		"description": "A name from the older layer of #TheZone history, still tucked into the channel's long memory.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "VP",
+		"name": "vip",
+		"role": "Zoner of Legend",
+		"description": "Old enough in the lore that the nick feels less like a flex and more like a preserved artifact.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "RZ",
+		"name": "Razr",
+		"role": "Zoner of Legend",
+		"description": "A sharp old handle from the #TheZone back catalog. Brief, memorable, very much of its time.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "UN",
+		"name": "unknown",
+		"role": "Zoner of Legend",
+		"description": "Yes, that was the actual nick. Somehow both impossible to identify and impossible to forget.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "ZS",
+		"name": "ZoneServ",
+		"role": "Service bot / basically ChanServ",
+		"description": "Channel services with a local badge. Useful, official-looking, and somehow number one all-time in Kick Lotto.",
+		"bot": true,
+		"order": 9999
+	},
+	{
+		"glyph": "KK",
+		"name": "karlton_ + karl_",
+		"role": "Bots / IRC-to-Discord bridge",
+		"description": "karlton_ is the other side of karl_, the bot sitting in #TheZone on Discord. Together they relay chat and presence between Discord and IRC users.",
+		"bot": true,
+		"order": 9999
+	},
+	{
+		"glyph": "BE",
+		"name": "Bender",
+		"role": "Bot / Bender Bending Rodriguez",
+		"description": "If he randomly insults you, that means he's working. He can also give you the weather:",
+		"command": "!w {zipcode}",
+		"bot": true,
+		"order": 9999
+	}
+]
