@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="TheZone IRC Network logo">
+  <defs>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff9f1a"/>
+      <stop offset="100%" stop-color="#ff6b00"/>
+    </linearGradient>
+
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="1 0 0 0 1
+                0 0.45 0 0 0.42
+                0 0 0 0 0
+                0 0 0 0.9 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="420" rx="36" fill="#050505"/>
+
+  <!-- Orbital IRC mark -->
+  <g transform="translate(160 210)" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <ellipse rx="108" ry="31" stroke="url(#orange)" stroke-width="9" transform="rotate(-25)"/>
+    <ellipse rx="108" ry="31" stroke="url(#orange)" stroke-width="9" transform="rotate(65)"/>
+    <path d="M-106 -31 C-45 -5 13 25 106 59" stroke="#fff" stroke-width="5" opacity=".9"/>
+    <path d="M-42 67 L48 -78" stroke="#fff" stroke-width="5" stroke-dasharray="18 13" opacity=".85"/>
+  </g>
+
+  <!-- Center bolt / zone slash -->
+  <path d="M113 225 L199 145 L242 158 L153 272 Z"
+        fill="#050505"
+        stroke="url(#orange)"
+        stroke-width="8"
+        stroke-linejoin="round"
+        filter="url(#glow)"/>
+
+  <!-- Wordmark -->
+  <g font-family="Arial Black, Impact, system-ui, sans-serif" font-weight="900">
+    <text x="315" y="202" font-size="104" fill="#fff" letter-spacing="-3">
+      The<tspan fill="url(#orange)">Zone</tspan>
+    </text>
+    <text x="323" y="275" font-size="42" fill="#ff9f1a" letter-spacing="9">
+      IRC NETWORK
+    </text>
+  </g>
+
+  <!-- Underline -->
+  <path d="M320 307 H945"
+        stroke="url(#orange)"
+        stroke-width="8"
+        stroke-linecap="round"
+        filter="url(#glow)"/>
+
+  <!-- Small IRC nodes -->
+  <g fill="url(#orange)" filter="url(#glow)">
+    <circle cx="996" cy="163" r="9"/>
+    <circle cx="1038" cy="210" r="9"/>
+    <circle cx="990" cy="257" r="9"/>
+    <path d="M996 163 L1038 210 L990 257" fill="none" stroke="url(#orange)" stroke-width="5"/>
+  </g>
+</svg>

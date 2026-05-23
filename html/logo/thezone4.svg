@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 160 160"
+     role="img"
+     aria-labelledby="title desc">
+	<title id="title">#TheZone terminal prompt logo</title>
+	<desc id="desc">A sharp terminal prompt mark for TheZone IRC Network.</desc>
+	<defs>
+		<linearGradient id="zone4-bg" x1="28" y1="26" x2="132" y2="134" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#151a20" />
+			<stop offset="1" stop-color="#050607" />
+		</linearGradient>
+		<linearGradient id="zone4-orange" x1="34" y1="34" x2="126" y2="126" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#ffd27a" />
+			<stop offset="0.58" stop-color="#ff9f1a" />
+			<stop offset="1" stop-color="#ff6b00" />
+		</linearGradient>
+	</defs>
+
+	<rect x="18" y="24" width="124" height="112" rx="22" fill="url(#zone4-bg)" stroke="url(#zone4-orange)" stroke-width="5" />
+	<path d="M39 59h82" stroke="#ffc266" stroke-width="5" stroke-linecap="round" opacity="0.28" />
+	<path d="M39 101h82" stroke="#68e4ff" stroke-width="5" stroke-linecap="round" opacity="0.2" />
+
+	<path d="M45 68l22 16-22 16" fill="none" stroke="#68e4ff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+	<path d="M78 102h37" fill="none" stroke="#f7f4eb" stroke-width="9" stroke-linecap="round" />
+
+	<path d="M91 42l-23 76" stroke="#ff9f1a" stroke-width="8" stroke-linecap="round" />
+	<path d="M116 42l-23 76" stroke="#ffc266" stroke-width="8" stroke-linecap="round" />
+</svg>

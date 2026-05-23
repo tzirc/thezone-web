@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 160 160"
+     role="img"
+     aria-labelledby="title desc">
+	<title id="title">#TheZone channel mark logo</title>
+	<desc id="desc">A modern channel badge with a bold hash mark and wordless zone symbol for TheZone IRC Network.</desc>
+	<defs>
+		<linearGradient id="zone5-bg" x1="80" y1="14" x2="80" y2="146" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#111820" />
+			<stop offset="1" stop-color="#040506" />
+		</linearGradient>
+		<linearGradient id="zone5-edge" x1="27" y1="28" x2="133" y2="132" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#68e4ff" />
+			<stop offset="0.46" stop-color="#ff9f1a" />
+			<stop offset="1" stop-color="#ff6b00" />
+		</linearGradient>
+	</defs>
+
+	<path d="M80 15l55 32v66l-55 32-55-32V47z" fill="url(#zone5-bg)" stroke="url(#zone5-edge)" stroke-width="5" stroke-linejoin="round" />
+	<path d="M48 65h68M43 96h68" stroke="#ffc266" stroke-width="8" stroke-linecap="round" />
+	<path d="M69 45l-16 74M107 45l-16 74" stroke="#f7f4eb" stroke-width="8" stroke-linecap="round" />
+
+	<path d="M43 112l74-64" stroke="#68e4ff" stroke-width="5" stroke-linecap="round" opacity="0.86" />
+	<path d="M50 119l74-64" stroke="#ff9f1a" stroke-width="5" stroke-linecap="round" opacity="0.76" />
+	<circle cx="119" cy="50" r="6" fill="#68e4ff" />
+	<circle cx="41" cy="111" r="6" fill="#ff9f1a" />
+</svg>

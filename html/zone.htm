@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>#TheZone IRC Network</title>
+	<meta name="description" content="#TheZone IRC Network: an old-school IRC community for chat, code, friends, and the long tail of the web." />
+
+	<style>
+		:root {
+			color-scheme: dark;
+			--bg: #070707;
+			--ink: #f5f2ea;
+			--muted: #c3b9a9;
+			--soft: rgba(255, 255, 255, 0.13);
+			--line: rgba(255, 255, 255, 0.16);
+			--panel: rgba(13, 13, 13, 0.76);
+			--panel-strong: rgba(5, 5, 5, 0.92);
+			--orange: #ff9600;
+			--orange-soft: #ffc266;
+			--blue: #4f86ff;
+			--max: 1180px;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			min-height: 100%;
+			background:
+				radial-gradient(circle at 14% 6%, rgba(255, 150, 0, 0.18), transparent 32%),
+				radial-gradient(circle at 86% 16%, rgba(79, 134, 255, 0.12), transparent 30%),
+				linear-gradient(180deg, #151515 0, #070707 48%, #020202 100%);
+		}
+
+		body {
+			min-height: 100%;
+			margin: 0;
+			color: var(--ink);
+			font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			font-size: clamp(16px, 1.35vw, 17px);
+			line-height: 1.58;
+			letter-spacing: 0;
+			background:
+				linear-gradient(90deg, rgba(255, 150, 0, 0.06) 1px, transparent 1px),
+				linear-gradient(0deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+			background-size: 42px 42px;
+		}
+
+		a {
+			color: #8fb0ff;
+			text-decoration-color: rgba(143, 176, 255, 0.46);
+			text-underline-offset: 0.18em;
+			transition: color 180ms ease, border-color 180ms ease, background 180ms ease, transform 180ms ease;
+		}
+
+		a:hover {
+			color: #ffffff;
+			text-decoration-color: rgba(255, 150, 0, 0.78);
+		}
+
+		.wrap {
+			width: min(100% - 34px, var(--max));
+			margin: 0 auto;
+			padding: 20px 0 56px;
+		}
+
+		.header {
+			display: grid;
+			grid-template-columns: auto minmax(0, 1fr) auto;
+			gap: 24px;
+			align-items: center;
+			padding: 16px 0 18px;
+		}
+
+		.brand {
+			display: inline-flex;
+			gap: 14px;
+			align-items: center;
+			color: var(--ink);
+			text-decoration: none;
+		}
+
+		.logo {
+			width: 94px;
+			height: 94px;
+			filter: drop-shadow(0 0 28px rgba(255, 150, 0, 0.34));
+		}
+
+		.brand-text {
+			display: grid;
+			gap: 2px;
+		}
+
+		.brand-name {
+			color: #ffffff;
+			font-size: clamp(2.1rem, 4vw, 3.5rem);
+			font-weight: 950;
+			line-height: 0.92;
+			text-transform: none;
+		}
+
+		.brand-sub {
+			color: var(--muted);
+			font-size: 0.92rem;
+		}
+
+		.header-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			justify-content: flex-end;
+		}
+
+		.nav {
+			position: sticky;
+			top: 0;
+			z-index: 10;
+			display: grid;
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+			border: 1px solid #000;
+			background: linear-gradient(180deg, #333, #050505 44%, #000);
+			box-shadow: 0 10px 26px rgba(0, 0, 0, 0.46);
+		}
+
+		.nav a,
+		.button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 42px;
+			padding: 0 14px;
+			border: 1px solid var(--line);
+			background: rgba(8, 8, 8, 0.68);
+			color: var(--ink);
+			font-size: 0.86rem;
+			font-weight: 820;
+			line-height: 1.1;
+			text-align: center;
+			text-decoration: none;
+		}
+
+		.nav a {
+			border-width: 0 1px 0 0;
+			border-radius: 0;
+			text-shadow: 0 1px 0 #000;
+		}
+
+		.nav a:first-child {
+			background: linear-gradient(180deg, #ffb33d, var(--orange));
+			color: #101010;
+		}
+
+		.nav a:last-child {
+			border-right: 0;
+		}
+
+		.nav a:hover,
+		.button:hover {
+			border-color: rgba(255, 150, 0, 0.85);
+			background: rgba(255, 150, 0, 0.18);
+			transform: translateY(-1px);
+		}
+
+		.button.primary {
+			border-color: rgba(255, 150, 0, 0.92);
+			background: linear-gradient(135deg, #ffad28, #f08200);
+			color: #111111;
+			box-shadow: 0 18px 44px rgba(255, 150, 0, 0.24);
+		}
+
+		.hero {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) minmax(280px, 0.55fr);
+			gap: clamp(24px, 5vw, 58px);
+			align-items: center;
+			min-height: clamp(560px, 70vh, 760px);
+			padding: clamp(42px, 8vw, 86px) 0 42px;
+		}
+
+		.kicker,
+		.eyebrow {
+			color: var(--orange-soft);
+			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			font-size: 0.74rem;
+			font-weight: 780;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+		}
+
+		.kicker {
+			display: inline-flex;
+			gap: 10px;
+			align-items: center;
+			margin: 0 0 16px;
+		}
+
+		.kicker::before {
+			width: 34px;
+			height: 2px;
+			content: "";
+			background: var(--orange);
+		}
+
+		h1,
+		h2,
+		h3 {
+			margin: 0;
+			line-height: 1.02;
+			letter-spacing: 0;
+		}
+
+		h1 {
+			max-width: 9ch;
+			color: #ffffff;
+			font-size: clamp(4rem, 12vw, 10.8rem);
+			text-shadow: 0 0 30px rgba(255, 150, 0, 0.28), 0 8px 0 rgba(0, 0, 0, 0.48);
+		}
+
+		.lede {
+			max-width: 62ch;
+			margin: 22px 0 0;
+			color: #eee6da;
+			font-size: clamp(1.06rem, 2vw, 1.3rem);
+		}
+
+		.actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			margin-top: 30px;
+		}
+
+		.chat-preview {
+			position: relative;
+			overflow: hidden;
+			border: 1px solid var(--line);
+			background:
+				linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent),
+				rgba(0, 0, 0, 0.48);
+			box-shadow: 0 28px 80px rgba(0, 0, 0, 0.5);
+		}
+
+		.chat-preview::before {
+			position: absolute;
+			inset: 0;
+			content: "";
+			background:
+				radial-gradient(circle at 78% 18%, rgba(255, 150, 0, 0.18), transparent 36%),
+				linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+				linear-gradient(0deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+			background-size: auto, 28px 28px, 28px 28px;
+			pointer-events: none;
+		}
+
+		.chat-head {
+			position: relative;
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+			padding: 14px 16px;
+			border-bottom: 1px solid var(--line);
+			background: rgba(0, 0, 0, 0.42);
+		}
+
+		.chat-title {
+			display: inline-flex;
+			gap: 10px;
+			align-items: center;
+			color: #ffffff;
+			font-weight: 900;
+		}
+
+		.chat-title .logo {
+			width: 38px;
+			height: 38px;
+		}
+
+		.chat-pill {
+			display: grid;
+			min-height: 28px;
+			place-items: center;
+			padding: 0 10px;
+			border: 1px solid rgba(255, 150, 0, 0.52);
+			background: rgba(255, 150, 0, 0.12);
+			color: var(--orange-soft);
+			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			font-size: 0.68rem;
+			text-transform: uppercase;
+		}
+
+		.chat-body {
+			position: relative;
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) 108px;
+			min-height: 350px;
+		}
+
+		.chat-log {
+			display: grid;
+			align-content: start;
+			gap: 12px;
+			padding: 18px;
+			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			font-size: 0.82rem;
+		}
+
+		.chat-line {
+			display: grid;
+			grid-template-columns: 6.5ch minmax(0, 1fr);
+			gap: 10px;
+			color: #ded8ce;
+		}
+
+		.nick {
+			color: var(--orange-soft);
+			font-weight: 800;
+			text-align: right;
+		}
+
+		.system .nick {
+			color: #7bdcff;
+		}
+
+		.chat-users {
+			display: grid;
+			align-content: start;
+			gap: 8px;
+			padding: 18px 14px;
+			border-left: 1px solid var(--line);
+			background: rgba(0, 0, 0, 0.32);
+			color: var(--muted);
+			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			font-size: 0.72rem;
+		}
+
+		.chat-users strong {
+			color: var(--orange-soft);
+			font-size: 0.68rem;
+			text-transform: uppercase;
+		}
+
+		.chat-input {
+			position: relative;
+			padding: 12px 16px;
+			border-top: 1px solid var(--line);
+			background: rgba(0, 0, 0, 0.44);
+			color: #ffffff;
+			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			font-size: 0.82rem;
+		}
+
+		.layout {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+			gap: 16px;
+			align-items: start;
+			min-width: 0;
+		}
+
+		.main-col,
+		.side-col {
+			display: grid;
+			gap: 16px;
+			min-width: 0;
+		}
+
+		.panel {
+			min-width: 0;
+			border: 1px solid var(--line);
+			background: var(--panel);
+			backdrop-filter: blur(12px);
+		}
+
+		.panel-head {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+			padding: 12px 14px;
+			border-bottom: 3px solid var(--orange);
+			background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.28));
+		}
+
+		.panel-head h2,
+		.panel-head h3 {
+			color: var(--ink);
+			font-size: clamp(1.25rem, 2vw, 1.8rem);
+		}
+
+		.panel-body {
+			padding: 18px;
+		}
+
+		.news-item {
+			display: grid;
+			grid-template-columns: auto minmax(0, 1fr);
+			gap: 14px;
+			padding: 16px;
+			background: rgba(255, 255, 255, 0.06);
+		}
+
+		.avatar {
+			display: grid;
+			width: 54px;
+			height: 54px;
+			place-items: center;
+			border: 1px solid rgba(255, 150, 0, 0.7);
+			background: #0a0a0a;
+			color: var(--orange-soft);
+			font-weight: 900;
+		}
+
+		.news-item h3 {
+			margin-bottom: 4px;
+			color: #8fb0ff;
+			font-size: 1.28rem;
+		}
+
+		p {
+			margin: 0 0 1em;
+			color: #dfd7cd;
+		}
+
+		p:last-child {
+			margin-bottom: 0;
+		}
+
+		.link-list {
+			display: grid;
+			gap: 8px;
+			min-width: 0;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.link-list li {
+			min-width: 0;
+			overflow: hidden;
+		}
+
+		.link-list a {
+			display: block;
+			max-width: 100%;
+			min-width: 0;
+			overflow: hidden;
+			padding-bottom: 8px;
+			border-bottom: 1px dotted rgba(255, 255, 255, 0.16);
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.server-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 12px;
+		}
+
+		.server {
+			padding: 14px;
+			border: 1px solid var(--line);
+			background: rgba(0, 0, 0, 0.34);
+		}
+
+		.server strong {
+			display: block;
+			color: var(--orange-soft);
+			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			font-size: 0.78rem;
+			text-transform: uppercase;
+		}
+
+		.server span {
+			display: block;
+			margin-top: 5px;
+			color: #ffffff;
+			font-size: 1.14rem;
+			font-weight: 850;
+			overflow-wrap: anywhere;
+		}
+
+		.footer {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			align-items: center;
+			justify-content: space-between;
+			padding: 28px 0 0;
+			color: var(--muted);
+			font-size: 0.9rem;
+		}
+
+		@media (max-width: 980px) {
+			.header,
+			.hero,
+			.layout {
+				grid-template-columns: 1fr;
+			}
+
+			.header-actions {
+				justify-content: flex-start;
+			}
+
+			.nav {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+			}
+
+			.chat-preview {
+				max-width: 620px;
+			}
+		}
+
+		@media (max-width: 680px) {
+			.wrap {
+				width: min(100% - 22px, var(--max));
+				padding-top: 10px;
+			}
+
+			.header {
+				gap: 14px;
+			}
+
+			.brand {
+				align-items: flex-start;
+			}
+
+			.logo {
+				width: 62px;
+				height: 62px;
+			}
+
+			.brand-name {
+				font-size: 2rem;
+			}
+
+			.nav {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.nav a,
+			.button {
+				min-height: 44px;
+				padding: 0 10px;
+				font-size: 0.8rem;
+			}
+
+			.hero {
+				gap: 26px;
+				min-height: 0;
+				padding: 34px 0;
+			}
+
+			h1 {
+				font-size: clamp(3.4rem, 20vw, 5.4rem);
+			}
+
+			.actions,
+			.header-actions {
+				display: grid;
+				grid-template-columns: 1fr;
+				width: 100%;
+			}
+
+			.chat-head {
+				align-items: flex-start;
+			}
+
+			.chat-body,
+			.server-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.chat-users {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				border-top: 1px solid var(--line);
+				border-left: 0;
+			}
+
+			.news-item {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrap">
+		<header class="header" aria-label="#TheZone header">
+			<a class="brand" href="#top" aria-label="#TheZone home">
+				<svg class="logo" viewBox="0 0 160 160" role="img" aria-label="#TheZone orbital logo">
+					<g fill="none" stroke="#ffc266" stroke-linecap="round" stroke-linejoin="round">
+						<ellipse cx="80" cy="80" rx="72" ry="20" stroke-width="4" transform="rotate(-27 80 80)" />
+						<ellipse cx="80" cy="80" rx="72" ry="20" stroke-width="4" transform="rotate(64 80 80)" />
+						<path d="M7 58c26 11 53 24 82 38 21 10 42 18 64 24" stroke-width="3" />
+						<path d="M47 119 108 28" stroke-width="3" stroke-dasharray="13 9" />
+					</g>
+					<path d="M37 87 95 52 123 61 65 102z" fill="#050505" stroke="#ffc266" stroke-width="3" />
+					<path d="M52 80 94 63" stroke="#ffffff" stroke-width="5" stroke-linecap="round" />
+				</svg>
+				<span class="brand-text">
+					<span class="brand-name">#TheZone</span>
+					<span class="brand-sub">Welcome to TheZone IRC Network</span>
+				</span>
+			</a>
+
+			<div></div>
+
+			<div class="header-actions">
+				<a class="button" href="ircs://irc.tzirc.com:6697/thezone">Sign in</a>
+				<a class="button" href="#connect">Help</a>
+			</div>
+		</header>
+
+		<nav class="nav" aria-label="Primary navigation">
+			<a href="#top">Home</a>
+			<a href="ircs://irc.tzirc.com:6697/thezone">Chat Now!</a>
+			<a href="#community">Community</a>
+			<a href="#media">Media</a>
+			<a href="#groups">Groups</a>
+			<a href="#forums">Forums</a>
+		</nav>
+
+		<main id="top">
+			<section class="hero" aria-labelledby="zone-title">
+				<div>
+					<p class="kicker">IRC since the old web still felt handmade</p>
+					<h1 id="zone-title">Chat now. Idle forever.</h1>
+					<p class="lede">#TheZone is an IRC network for friends, code talk, late-night nonsense, and the kind of community that survives every redesign of the internet.</p>
+					<div class="actions" id="connect">
+						<a class="button primary" href="ircs://irc.tzirc.com:6697/thezone">Join #TheZone</a>
+						<a class="button" href="#connect-title">Connection Details</a>
+					</div>
+				</div>
+
+				<div class="chat-preview" aria-label="#TheZone IRC chat preview">
+					<div class="chat-head">
+						<div class="chat-title">
+							<svg class="logo" viewBox="0 0 160 160" aria-hidden="true">
+								<g fill="none" stroke="#ffc266" stroke-linecap="round" stroke-linejoin="round">
+									<ellipse cx="80" cy="80" rx="72" ry="20" stroke-width="4" transform="rotate(-27 80 80)" />
+									<ellipse cx="80" cy="80" rx="72" ry="20" stroke-width="4" transform="rotate(64 80 80)" />
+									<path d="M7 58c26 11 53 24 82 38 21 10 42 18 64 24" stroke-width="3" />
+									<path d="M47 119 108 28" stroke-width="3" stroke-dasharray="13 9" />
+								</g>
+								<path d="M37 87 95 52 123 61 65 102z" fill="#050505" stroke="#ffc266" stroke-width="3" />
+								<path d="M52 80 94 63" stroke="#ffffff" stroke-width="5" stroke-linecap="round" />
+							</svg>
+							<span>#TheZone</span>
+						</div>
+						<span class="chat-pill">irc.tzirc.com / SSL 6697</span>
+					</div>
+					<div class="chat-body">
+						<div class="chat-log">
+							<div class="chat-line system"><span class="nick">*</span><span>Now talking in #TheZone</span></div>
+							<div class="chat-line"><span class="nick">darc</span><span>old web energy, new client smell.</span></div>
+							<div class="chat-line"><span class="nick">syber</span><span>ship it, then idle for six hours.</span></div>
+							<div class="chat-line"><span class="nick">neo</span><span>anyone still have that module?</span></div>
+							<div class="chat-line"><span class="nick">pre</span><span>probably in a zip inside another zip.</span></div>
+							<div class="chat-line system"><span class="nick">*</span><span>topic: code, ops, nostalgia, questionable decisions</span></div>
+						</div>
+						<div class="chat-users" aria-label="Channel users">
+							<strong>nicks</strong>
+							<span>@darc</span>
+							<span>@syber</span>
+							<span>neo</span>
+							<span>pre</span>
+							<span>dos</span>
+							<span>plastik</span>
+						</div>
+					</div>
+					<div class="chat-input">/join #TheZone</div>
+				</div>
+			</section>
+
+			<div class="layout">
+				<div class="main-col">
+					<section class="panel" id="community" aria-labelledby="welcome-title">
+						<div class="panel-head">
+							<h2 id="welcome-title">Welcome!</h2>
+						</div>
+						<div class="panel-body">
+							<p>See that exclamation point? That means we're happy. Probably. Whatever.</p>
+							<p>TheZone is the place to reconnect, keep a terminal window open, and pretend IRC never stopped being the center of the universe.</p>
+						</div>
+					</section>
+
+					<section class="panel" id="media" aria-labelledby="news-title">
+						<div class="panel-head">
+							<h2 id="news-title">News</h2>
+						</div>
+						<div class="panel-body">
+							<div class="news-item">
+								<div class="avatar">TZ</div>
+								<div>
+									<h3>#TheZone returns to the surface</h3>
+									<p>The old site had tabs, forums, quotes, themes, and exactly the right amount of chaos. This page keeps the spirit: fast links, loud orange, and a clean path into chat.</p>
+									<p><small>Posted to News by Darc</small></p>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="panel" id="groups" aria-labelledby="connect-title">
+						<div class="panel-head">
+							<h2 id="connect-title">Connect</h2>
+						</div>
+						<div class="panel-body">
+							<div class="server-grid">
+								<div class="server">
+									<strong>Server</strong>
+									<span>irc.tzirc.com</span>
+								</div>
+								<div class="server">
+									<strong>Port</strong>
+									<span>6697 SSL</span>
+								</div>
+								<div class="server">
+									<strong>Channel</strong>
+									<span>#TheZone</span>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<aside class="side-col" id="forums" aria-label="TheZone sidebars">
+					<section class="panel">
+						<div class="panel-head">
+							<h3>Forums</h3>
+						</div>
+						<div class="panel-body">
+							<ul class="link-list">
+								<li><a href="ircs://irc.tzirc.com:6697/thezone">Google +</a></li>
+								<li><a href="ircs://irc.tzirc.com:6697/thezone">#thezone kick lotto stats...</a></li>
+								<li><a href="ircs://irc.tzirc.com:6697/thezone">I fell down in a very animated...</a></li>
+								<li><a href="ircs://irc.tzirc.com:6697/thezone">When should CAPSLOCK WEDNESDAYS occur?</a></li>
+							</ul>
+						</div>
+					</section>
+
+					<section class="panel">
+						<div class="panel-head">
+							<h3>Latest Quotes</h3>
+						</div>
+						<div class="panel-body">
+							<ul class="link-list">
+								<li><a href="ircs://irc.tzirc.com:6697/thezone">Breaking the silence, you guys.</a></li>
+								<li><a href="ircs://irc.tzirc.com:6697/thezone">A wise man... and a happy man...</a></li>
+								<li><a href="ircs://irc.tzirc.com:6697/thezone">A syrius confession...</a></li>
+								<li><a href="ircs://irc.tzirc.com:6697/thezone">Coming up a little short...</a></li>
+							</ul>
+						</div>
+					</section>
+				</aside>
+			</div>
+		</main>
+
+		<footer class="footer">
+			<span>#TheZone IRC Network</span>
+			<span>irc.tzirc.com / #TheZone</span>
+		</footer>
+	</div>
+</body>
+
+</html>
