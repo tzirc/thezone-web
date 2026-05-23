@@ -315,7 +315,7 @@
 			gap: clamp(30px, 6vw, 86px);
 			align-items: center;
 			min-height: clamp(640px, 80vh, 840px);
-			padding: clamp(52px, 8vw, 92px) 0 54px;
+			padding: clamp(42px, 7vw, 78px) 0 54px;
 		}
 
 		.kicker,
@@ -363,6 +363,40 @@
 		.accent {
 			color: var(--orange);
 			text-shadow: 0 0 30px rgba(255, 159, 26, 0.34);
+		}
+
+		.hero-word {
+			display: inline-block;
+			min-width: 8ch;
+			white-space: nowrap;
+			visibility: hidden;
+		}
+
+		.hero-word.ready {
+			visibility: visible;
+		}
+
+		.hero-word.typing::after {
+			display: inline-block;
+			width: 0.08em;
+			height: 0.78em;
+			margin-left: 0.08em;
+			background: currentColor;
+			content: "";
+			animation: hero-cursor-blink 900ms steps(1) infinite;
+			vertical-align: -0.04em;
+		}
+
+		@keyframes hero-cursor-blink {
+			0%,
+			49% {
+				opacity: 1;
+			}
+
+			50%,
+			100% {
+				opacity: 0;
+			}
 		}
 
 		.lede {
@@ -444,12 +478,21 @@
 			filter: drop-shadow(0 0 34px rgba(255, 159, 26, 0.52));
 			transform-origin: 50% 55%;
 		}
+
+		.orbit-wrap .logo.original-logo {
+			filter: hue-rotate(-15deg) drop-shadow(0 0 34px rgba(255, 159, 26, 0.52));
+		}
+
 		.orbit-wrap .logo.hidden {
 			display: none;
 		}
 
 		.orbit-wrap .logo.logo-spin {
 			animation: logo-top-spin 1.22s cubic-bezier(0.18, 0.88, 0.3, 1) both;
+		}
+
+		.orbit-wrap .logo.original-logo.logo-spin {
+			animation-name: original-logo-top-spin;
 		}
 
 		@keyframes logo-top-spin {
@@ -481,6 +524,38 @@
 			100% {
 				transform: rotate(1440deg) scale(1);
 				filter: drop-shadow(0 0 34px rgba(255, 159, 26, 0.52));
+			}
+		}
+
+		@keyframes original-logo-top-spin {
+			0% {
+				transform: rotate(0deg) scale(1);
+				filter: hue-rotate(-15deg) drop-shadow(0 0 34px rgba(255, 159, 26, 0.52));
+			}
+
+			72% {
+				transform: rotate(1080deg) scale(1.02);
+				filter: hue-rotate(-15deg) drop-shadow(0 0 44px rgba(255, 159, 26, 0.68));
+			}
+
+			80% {
+				transform: rotate(1440deg) scale(1);
+				filter: hue-rotate(-15deg) drop-shadow(0 0 44px rgba(255, 159, 26, 0.68));
+			}
+
+			88% {
+				transform: rotate(1440deg) scale(0.94);
+				filter: hue-rotate(-15deg) drop-shadow(0 0 28px rgba(255, 159, 26, 0.58));
+			}
+
+			96% {
+				transform: rotate(1440deg) scale(1.08);
+				filter: hue-rotate(-15deg) drop-shadow(0 0 52px rgba(255, 159, 26, 0.82));
+			}
+
+			100% {
+				transform: rotate(1440deg) scale(1);
+				filter: hue-rotate(-15deg) drop-shadow(0 0 34px rgba(255, 159, 26, 0.52));
 			}
 		}
 
@@ -1029,7 +1104,13 @@
 			}
 
 			h1 {
-				font-size: clamp(3.1rem, 20vw, 5rem);
+				max-width: 100%;
+				overflow-wrap: anywhere;
+				font-size: clamp(2.7rem, 16vw, 4.2rem);
+			}
+
+			.hero-word {
+				min-width: min(8ch, 100%);
 			}
 
 			.lede {
@@ -1085,6 +1166,9 @@
 				<a href="#kick-lotto">Kick Lotto</a>
 				<a href="#capslock-wednesday">CLW</a>
 				<a href="#people">People</a>
+				<!-- Leave this here ... we will use it later. -->
+				<!-- <a href="#channels">Channels</a> -->
+				<!-- /Leave this here ... we will use it later. -->
 				<a href="#connect">Connect</a>
 				<a class="discord-link" href="https://discord.gg/m6zqemfmvD" target="_blank" rel="noreferrer">Discord</a>
 				<a class="launch-link" href="ircs://irc.tzirc.com:6697/thezone">Launch IRC</a>
@@ -1106,7 +1190,7 @@
 					<!-- LEAVE THESE COMMENTS HERE -->
 					<!-- <h1 id="zone-title">The terminal is the <span class="accent">third place</span></h1> -->
 					<!-- <h1 id="zone-title">#TheZone <span class="accent">`third place`</span>;</h1> -->
-					<h1 id="zone-title">Your IRC <span class="accent">~/</span></h1>
+					<h1 id="zone-title">Your IRC <span class="accent hero-word" data-hero-word data-current-word="~/"></span></h1>
 					<!-- <h1 id="zone-title">Your IRC <span class="accent">third place.</span></h1> -->
 					<!-- END LEAVE THESE COMMENTS HERE -->
 					<p class="lede">#TheZone is a persistent IRC hangout for programmers, operators, security folks, tinkerers, and friends who would rather talk in channels than feeds.</p>
@@ -1137,7 +1221,7 @@
 							</svg> -->
 							<!-- <img src="logo/thezone-logo.svg" class="logo" aria-label="#TheZone orbital logo" /> -->
 							<img src="logo/thezone7-cropped.png" class="logo" aria-label="#TheZone terminal logo" />
-							<img src="logo/thezone-logo.svg" class="logo hidden" aria-label="#TheZone original logo" />
+							<img src="logo/thezone-logo.svg" class="logo original-logo hidden" aria-label="#TheZone original logo" />
 						</div>
 						<ul class="prompt">
 							<li><strong>server</strong> <span>irc.tzirc.com</span></li>
@@ -1264,7 +1348,7 @@
 				<div class="rituals" aria-label="Capslock Wednesday details">
 					<div class="ritual">
 						<p class="label">CLW</p>
-						<h3>It is loud, scripted, and exactly the point.</h3>
+						<h3>It is loud, overengineered, and exactly the point.</h3>
 						<p>Most regulars script the whole thing: nick changes, automatic text transforms, the works. For an hour, the channel turns into a very committed bit, and somehow everyone understands the assignment.</p>
 						<p>COME JOIN US FOR CLW!</p>
 					</div>
@@ -1299,6 +1383,20 @@
 					<button class="button" type="button" data-people-toggle hidden>Show more</button>
 				</div>
 			</section>
+
+			<!-- Leave this here ... we will use it later. -->
+			<!-- <section class="band" id="channels" aria-labelledby="channels-title">
+				<div class="band-head">
+					<div>
+						<p class="label">Bring your room</p>
+						<h2 id="channels-title">#TheZone is a channel. TZIRC is the network.</h2>
+						<p>Have a project, crew, guild, lab, or suspiciously specific friend group that needs a quiet IRC home? Bring it over. We like channels with personality, logs with lore, and people who still know what `/join` does.</p>
+						<p>We can help you get settled, register the room, and keep the lights on. You bring the topic drift; we will bring the server.</p>
+					</div>
+					<a class="button" href="ircs://irc.tzirc.com:6697/thezone">Ask us</a>
+				</div>
+			</section> -->
+			<!-- /Leave this here ... we will use it later. -->
 
 			<section class="band" id="connect" aria-labelledby="connect-title">
 				<div class="connect">
@@ -1337,7 +1435,7 @@
 			<p class="label">IRC client required</p>
 			<h2 id="protocol-title">Opening IRC from the browser</h2>
 			<p>IRC links only work if you have an IRC client installed and your browser is allowed to hand off irc:// or ircs:// links to it.</p>
-			<p>If nothing opens, check your browser protocol-handler settings, or open your IRC client manually and connect to irc.tzirc.com / #TheZone.</p>
+			<p>If nothing opens or you receive an error, check your browser protocol-handler settings, or open your IRC client manually and connect to irc.tzirc.com / #TheZone.</p>
 			<div class="protocol-actions">
 				<button class="button primary" type="button" data-protocol-continue>Continue</button>
 				<button class="button" type="button" data-protocol-cancel>Cancel</button>
@@ -1353,6 +1451,57 @@
 
 	<script>
 		(() => {
+			const heroWord = document.querySelector("[data-hero-word]");
+			if (heroWord && window.zoneHeroTyping !== false && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+				const initialHeroWord = heroWord.dataset.currentWord || "~/";
+				const shuffledHeroWords = ["home", "haven", "shell", "room", "node", "port", "link", "signal", "base", "hub", "nest", "log", "tty", "term", "place", "network", "channel", "#", "$", "root"]
+					.map((word) => ({ word, sort: Math.random() }))
+					.sort((a, b) => a.sort - b.sort)
+					.map(({ word }) => word);
+				const heroWords = [initialHeroWord, ...shuffledHeroWords];
+				let heroWordIndex = 0;
+				let heroLetterIndex = 0;
+				let isDeletingHeroWord = false;
+
+				heroWord.textContent = "";
+				heroWord.classList.add("ready", "typing");
+
+				const typeHeroWord = () => {
+					const nextWord = heroWords[heroWordIndex];
+					heroWord.textContent = nextWord.slice(0, heroLetterIndex);
+
+					if (isDeletingHeroWord) {
+						heroLetterIndex -= 1;
+
+						if (heroLetterIndex < 0) {
+							isDeletingHeroWord = false;
+							heroWordIndex = (heroWordIndex + 1) % heroWords.length;
+							heroLetterIndex = 1;
+							window.setTimeout(typeHeroWord, 180);
+							return;
+						}
+
+						window.setTimeout(typeHeroWord, 55);
+						return;
+					}
+
+					heroLetterIndex += 1;
+
+					if (heroLetterIndex > nextWord.length) {
+						isDeletingHeroWord = true;
+						window.setTimeout(typeHeroWord, 1400);
+						return;
+					}
+
+					window.setTimeout(typeHeroWord, 90);
+				};
+
+				window.setTimeout(typeHeroWord, 300);
+			} else if (heroWord) {
+				heroWord.textContent = heroWord.dataset.currentWord || "~/";
+				heroWord.classList.add("ready");
+			}
+
 			const header = document.querySelector(".header");
 			const clwSection = document.querySelector("[data-clw-section]");
 			const clwCountdown = document.querySelector("[data-clw-countdown]");

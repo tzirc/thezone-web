@@ -1,5 +1,16 @@
 # tzirc.com
 
+
+## TheZone TODO
+
+* Connection cards: Native IRC, Discord bridge, browser webchat. Let people choose their door.
+* Live nicklist.
+* Command cheatsheet.
+* Channel history timeline: Small, curated, not exhaustive. AOL add-ons, Syber/dos era, Kick Lotto logging begins in 2008, Discord bridge, modern relaunch.
+* Status page section: IRC server up, webchat up, stats API up, Discord bridge up, IRC Services up. Nothing enterprise-y.
+
+
+
 ## Development
 
 To run, run the following:
@@ -19,6 +30,7 @@ People render by `order` from low to high. Entries with the same `order` are shu
 * Capslock Wednesday mode runs every Wednesday from 5-6pm ET. It recalculates once per second, so it turns on and off automatically without a reload.
 * During CLW, the CLW section, header brand, and primary nav text switch to uppercase. The CLW countdown changes to `ITS HERE!` with a restrained red pulse.
 * CLW can be forced for testing with `?clw=1` or from the console with `clw(true)`. Use `clw(false)` to force it off. Manual/query overrides win over the live schedule until the page reloads or the console function changes the override.
+* The hero headline types through short words like `~/`, `Home`, `Haven`, `Shell`, `Room`, and `Signal`. Set `window.zoneHeroTyping = false` before the page script runs to disable it.
 * Double-click the large terminal logo to spin it like a top. When the spin finishes, the logo swaps between the current and original logo.
 * Kick Lotto has a live hourly countdown, copyable `!klstats` command pills, and a live last-24-hours stats panel from `klstats.tzirc.com`.
 * The mobile nav opens as a full-viewport blurred overlay instead of pushing the page down.

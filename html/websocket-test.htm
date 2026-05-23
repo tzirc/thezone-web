@@ -32,6 +32,49 @@
 			cursor: pointer;
 		}
 
+		.form-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 14px;
+			max-width: 920px;
+		}
+
+		label {
+			display: grid;
+			gap: 6px;
+			color: #d6cec2;
+			font-size: 0.9rem;
+		}
+
+		input {
+			width: 100%;
+			min-height: 42px;
+			padding: 0 12px;
+			border: 1px solid rgba(255, 255, 255, 0.18);
+			border-radius: 10px;
+			background: rgba(255, 255, 255, 0.08);
+			color: #f7f4eb;
+			font: inherit;
+		}
+
+		.checkbox {
+			display: flex;
+			gap: 8px;
+			align-items: center;
+		}
+
+		.checkbox input {
+			width: auto;
+			min-height: 0;
+		}
+
+		.actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin-top: 16px;
+		}
+
 		pre {
 			margin-top: 18px;
 			white-space: pre-wrap;
@@ -42,42 +85,133 @@
 
 <body>
 	<h1>WebSocket IRC Test</h1>
-	<button type="button" id="connect">Connect</button>
+	<div class="form-grid">
+		<label>
+			WebSocket URL
+			<input id="server" value="wss://rod.tzirc.com/" autocomplete="off" />
+		</label>
+		<label>
+			Subprotocol
+			<input id="protocol" value="" autocomplete="off" />
+		</label>
+		<label>
+			Channel
+			<input id="channel" value="#thezone" autocomplete="off" />
+		</label>
+		<label>
+			Nick prefix
+			<input id="nick-prefix" value="webtest" autocomplete="off" />
+		</label>
+		<label>
+			Username
+			<input id="username" value="webtest" autocomplete="off" />
+		</label>
+		<label>
+			Real name
+			<input id="realname" value="WebSocket Test" autocomplete="off" />
+		</label>
+		<label>
+			Test message
+			<input id="message" value="WebSocket test from browser" autocomplete="off" />
+		</label>
+		<label class="checkbox">
+			<input id="send-message" type="checkbox" checked />
+			Send test message after joining
+		</label>
+		<label class="checkbox">
+			<input id="send-cap-ls" type="checkbox" checked />
+			Send CAP LS 302
+		</label>
+		<label class="checkbox">
+			<input id="send-cap-end" type="checkbox" checked />
+			Send CAP END
+		</label>
+	</div>
+	<div class="actions">
+		<button type="button" id="connect">Connect</button>
+		<button type="button" id="clear">Clear log</button>
+	</div>
 	<pre id="log">Idle.</pre>
 
 	<script>
 		(() => {
 			const log = document.getElementById("log");
 			const button = document.getElementById("connect");
+			const clear = document.getElementById("clear");
+			const fields = {
+				server: document.getElementById("server"),
+				protocol: document.getElementById("protocol"),
+				channel: document.getElementById("channel"),
+				nickPrefix: document.getElementById("nick-prefix"),
+				username: document.getElementById("username"),
+				realname: document.getElementById("realname"),
+				message: document.getElementById("message"),
+				sendMessage: document.getElementById("send-message"),
+				sendCapLs: document.getElementById("send-cap-ls"),
+				sendCapEnd: document.getElementById("send-cap-end")
+			};
 
 			const write = (message) => {
 				log.textContent += `\n${message}`;
 			};
 
-			button.addEventListener("click", () => {
-				const nick = `webtest${Math.floor(Math.random() * 10000)}`;
-				const ws = new WebSocket("wss://irc.tzirc.com:8097", ["text.ircv3.net"]);
+			const value = (field, fallback) => field.value.trim() || fallback;
 
-				log.textContent = `Connecting as ${nick}...`;
+			const sendLine = (ws, line) => {
+				write(`> ${line}`);
+				ws.send(`${line}\r\n`);
+			};
+
+			clear.addEventListener("click", () => {
+				log.textContent = "Idle.";
+			});
+
+			button.addEventListener("click", () => {
+				const server = value(fields.server, "wss://rod.tzirc.com/");
+				const protocol = fields.protocol.value.trim();
+				const channel = value(fields.channel, "#thezone");
+				const nickPrefix = value(fields.nickPrefix, "webtest");
+				const username = value(fields.username, "webtest");
+				const realname = value(fields.realname, "WebSocket Test");
+				const message = value(fields.message, "WebSocket test from browser");
+				const nick = `${nickPrefix}${Math.floor(Math.random() * 10000)}`;
+				const ws = protocol ? new WebSocket(server, [protocol]) : new WebSocket(server);
+
+				log.textContent = `Connecting to ${server} as ${nick}...`;
 
 				ws.addEventListener("open", () => {
 					write("connected");
-					ws.send("CAP LS 302");
-					ws.send(`NICK ${nick}`);
-					ws.send("USER webtest 0 * :WebSocket Test");
+
+					if (fields.sendCapLs.checked) {
+						sendLine(ws, "CAP LS 302");
+					}
+
+					sendLine(ws, `NICK ${nick}`);
+					sendLine(ws, `USER ${username} 0 * :${realname}`);
+
+					if (fields.sendCapEnd.checked) {
+						sendLine(ws, "CAP END");
+					}
 				});
 
 				ws.addEventListener("message", (event) => {
-					write(`< ${event.data}`);
+					const lines = String(event.data).split(/\r?\n/).filter(Boolean);
 
-					if (event.data.startsWith("PING ")) {
-						ws.send(`PONG ${event.data.slice(5)}`);
-					}
+					lines.forEach((line) => {
+						write(`< ${line}`);
 
-					if (event.data.includes(" 001 ")) {
-						ws.send("JOIN #thezone");
-						ws.send("PRIVMSG #thezone :WebSocket test from browser");
-					}
+						if (line.startsWith("PING ")) {
+							sendLine(ws, `PONG ${line.slice(5)}`);
+						}
+
+						if (line.includes(" 001 ")) {
+							sendLine(ws, `JOIN ${channel}`);
+
+							if (fields.sendMessage.checked) {
+								sendLine(ws, `PRIVMSG ${channel} :${message}`);
+							}
+						}
+					});
 				});
 
 				ws.addEventListener("error", () => {
