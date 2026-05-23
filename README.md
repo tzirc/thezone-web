@@ -33,6 +33,7 @@ People render by `order` from low to high. Entries with the same `order` are shu
 * The hero headline types through short words like `~/`, `Home`, `Haven`, `Shell`, `Room`, and `Signal`. Set `window.zoneHeroTyping = false` before the page script runs to disable it.
 * Double-click the large terminal logo to spin it like a top. When the spin finishes, the logo swaps between the current and original logo.
 * Kick Lotto has a live hourly countdown, copyable `!klstats` command pills, and a live last-24-hours stats panel from `klstats.tzirc.com`.
+* The quote log section loads six quotes from the KLStats quote-search API and lets visitors page through them in an IRC-style transcript view.
 * The mobile nav opens as a full-viewport blurred overlay instead of pushing the page down.
 * The page includes a soft cursor-follow glow on pointer devices.
 
