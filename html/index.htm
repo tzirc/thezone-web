@@ -392,7 +392,54 @@
 		.orbit-wrap .logo {
 			width: min(72%, 290px);
 			height: auto;
+			cursor: pointer;
 			filter: drop-shadow(0 0 34px rgba(255, 159, 26, 0.52));
+			transform-origin: 50% 55%;
+		}
+		.orbit-wrap .logo.hidden {
+			display: none;
+		}
+
+		.orbit-wrap .logo.logo-spin {
+			animation: logo-top-spin 1.22s cubic-bezier(0.18, 0.88, 0.3, 1) both;
+		}
+
+		@keyframes logo-top-spin {
+			0% {
+				transform: rotate(0deg) scale(1);
+				filter: drop-shadow(0 0 34px rgba(255, 159, 26, 0.52));
+			}
+
+			72% {
+				transform: rotate(1080deg) scale(1.02);
+				filter: drop-shadow(0 0 44px rgba(255, 159, 26, 0.68));
+			}
+
+			80% {
+				transform: rotate(1440deg) scale(1);
+				filter: drop-shadow(0 0 44px rgba(255, 159, 26, 0.68));
+			}
+
+			88% {
+				transform: rotate(1440deg) scale(0.94);
+				filter: drop-shadow(0 0 28px rgba(255, 159, 26, 0.58));
+			}
+
+			96% {
+				transform: rotate(1440deg) scale(1.08);
+				filter: drop-shadow(0 0 52px rgba(255, 159, 26, 0.82));
+			}
+
+			100% {
+				transform: rotate(1440deg) scale(1);
+				filter: drop-shadow(0 0 34px rgba(255, 159, 26, 0.52));
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.orbit-wrap .logo.logo-spin {
+				animation: none;
+			}
 		}
 
 		.prompt {
@@ -991,6 +1038,7 @@
 							</svg> -->
 							<!-- <img src="logo/thezone-logo.svg" class="logo" aria-label="#TheZone orbital logo" /> -->
 							<img src="logo/thezone7-cropped.png" class="logo" aria-label="#TheZone terminal logo" />
+							<img src="logo/thezone-logo.svg" class="logo hidden" aria-label="#TheZone original logo" />
 						</div>
 						<ul class="prompt">
 							<li><strong>server</strong> <span>irc.tzirc.com</span></li>
@@ -1425,6 +1473,32 @@
 				});
 			}
 
+			// Spin on dblclick. Because Darc is weird and apparently needs easter eggs.
+			const terminalLogos = document.querySelectorAll(".orbit-wrap .logo");
+			if (terminalLogos.length > 0) {
+				const onTerminalLogoSpinComplete = (terminalLogo) => {
+					terminalLogo.classList.remove("logo-spin");
+
+					(() => {
+						var logo_on = document.querySelector(".orbit-wrap .logo:not(.hidden)");
+						var logo_off = document.querySelector(".orbit-wrap .logo.hidden");
+
+						logo_on.className += " hidden";
+						logo_off.className = logo_off.className.replace(" hidden", "");
+					})();
+				};
+
+				for (var i = 0; i < terminalLogos.length; i++) {
+					terminalLogos[i].addEventListener("dblclick", function () {
+						this.classList.remove("logo-spin");
+						void this.offsetWidth;
+						this.classList.add("logo-spin");
+					});
+					terminalLogos[i].addEventListener("animationend", function () { onTerminalLogoSpinComplete(this) });
+				}
+			}
+			// /Spin
+
 			const cursorGlow = document.getElementById("cursor-glow");
 			if (cursorGlow) {
 				let glowRaf = 0;
@@ -1538,20 +1612,22 @@
 				}
 			});
 
-			(() => {
+			// DO NOT REMOVE THIS COMMENT SECTION
+			// // support the old logo if we want to see it
+			// (() => {
 
-				if (
-					window.location.hash == null ||
-					window.location.hash.indexOf('oldlogo') === -1
-				) return;
-				var logos = document.querySelectorAll(".logo");
-				if (logos.length == 0) return;
-				for (var i = 0; i < logos.length; i++) {
-					var el = logos[i]; // <img /> tag
-					el.src = 'logo/thezone-logo.svg';
-				}
+			// 	if (
+			// 		window.location.hash == null ||
+			// 		window.location.hash.indexOf('oldlogo') === -1
+			// 	) return;
+			// 	var logos = document.querySelectorAll(".logo");
+			// 	if (logos.length == 0) return;
+			// 	for (var i = 0; i < logos.length; i++) {
+			// 		var el = logos[i]; // <img /> tag
+			// 		el.src = 'logo/thezone-logo.svg';
+			// 	}
 
-			})();
+			// })();
 
 		})();
 	</script>
