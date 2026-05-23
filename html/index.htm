@@ -56,6 +56,10 @@
 			overflow: hidden;
 		}
 
+		body.modal-open {
+			overflow: hidden;
+		}
+
 		body::before {
 			position: fixed;
 			inset: 0;
@@ -165,6 +169,7 @@
 			line-height: 1.1;
 			text-align: center;
 			text-decoration: none;
+			cursor: pointer;
 		}
 
 		.nav a:hover,
@@ -203,6 +208,45 @@
 		.nav a.launch-link:hover {
 			border-color: rgba(255, 202, 93, 0.95);
 			background: linear-gradient(135deg, #ffb844, var(--orange-hot));
+		}
+
+		.protocol-modal {
+			position: fixed;
+			inset: 0;
+			z-index: 80;
+			display: grid;
+			place-items: center;
+			padding: 18px;
+			background: rgba(3, 4, 5, 0.72);
+			backdrop-filter: blur(18px);
+		}
+
+		.protocol-modal[hidden] {
+			display: none;
+		}
+
+		.protocol-card {
+			width: min(100%, 520px);
+			padding: clamp(20px, 4vw, 28px);
+			border: 1px solid rgba(255, 159, 26, 0.36);
+			border-radius: 16px;
+			background:
+				linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent),
+				var(--panel-strong);
+			box-shadow: 0 26px 80px rgba(0, 0, 0, 0.46);
+		}
+
+		.protocol-card h2 {
+			max-width: none;
+			margin-bottom: 12px;
+			font-size: clamp(1.7rem, 4vw, 2.6rem);
+		}
+
+		.protocol-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin-top: 20px;
 		}
 
 		.nav-toggle {
@@ -551,7 +595,7 @@
 			gap: 0.28em;
 			max-width: 100%;
 			min-width: 0;
-			padding: 12px 14px;
+			padding: 12px 22px;
 			border: 1px solid rgba(255, 159, 26, 0.42);
 			border-radius: 14px;
 			background: rgba(255, 159, 26, 0.1);
@@ -567,6 +611,9 @@
 		}
 
 		.clw-now .clw-countdown {
+			width: 14.5ch;
+			justify-content: center;
+			white-space: nowrap;
 			border-color: rgba(255, 65, 65, 0.72);
 			background: rgba(180, 20, 20, 0.16);
 			color: #fff2f2;
@@ -957,7 +1004,7 @@
 
 			.clw-countdown {
 				width: 100%;
-				padding: 10px 8px;
+				padding: 10px 14px;
 				gap: 0.2em;
 				justify-content: center;
 				font-size: clamp(1.45rem, 8.5vw, 2.3rem);
@@ -1285,6 +1332,19 @@
 		</footer>
 	</div>
 
+	<div class="protocol-modal" data-protocol-modal hidden>
+		<div class="protocol-card" role="dialog" aria-modal="true" aria-labelledby="protocol-title">
+			<p class="label">IRC client required</p>
+			<h2 id="protocol-title">Opening IRC from the browser</h2>
+			<p>IRC links only work if you have an IRC client installed and your browser is allowed to hand off irc:// or ircs:// links to it.</p>
+			<p>If nothing opens, check your browser protocol-handler settings, or open your IRC client manually and connect to irc.tzirc.com / #TheZone.</p>
+			<div class="protocol-actions">
+				<button class="button primary" type="button" data-protocol-continue>Continue</button>
+				<button class="button" type="button" data-protocol-cancel>Cancel</button>
+			</div>
+		</div>
+	</div>
+
 	<button id="back-to-top" aria-label="Back to top">
 		<svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true" focusable="false">
 			<path d="M1 9L8 2l7 7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1317,6 +1377,13 @@
 			const clwStart = (3 * 86400) + (17 * 3600);
 			const clwEnd = (3 * 86400) + (18 * 3600);
 			const weekSeconds = 7 * 86400;
+			const clwLiveMessages = [
+				"GO GO GO!",
+				"WE'RE LIVE!",
+				"IT'S HERE!",
+				"ALL CAPS!"
+			];
+			const clwLiveMessageSeconds = 4;
 			let clwOverride = new URLSearchParams(window.location.search).get("clw") === "1" ? true : null;
 
 			const formatCountdown = (totalSeconds) => {
@@ -1356,7 +1423,7 @@
 				clwSection.classList.toggle("clw-now", isClw);
 				header?.classList.toggle("clw-now", isClw);
 				if (isClw) {
-					clwCountdown.textContent = "ITS HERE!";
+					clwCountdown.textContent = clwLiveMessages[Math.floor(Date.now() / (clwLiveMessageSeconds * 1000)) % clwLiveMessages.length];
 					clwStatus.textContent = "CLW is live";
 					return;
 				}
@@ -1433,6 +1500,61 @@
 				});
 				document.querySelector(".brand")?.addEventListener("click", closePrimaryNav);
 			}
+
+			const protocolModal = document.querySelector("[data-protocol-modal]");
+			const protocolContinue = document.querySelector("[data-protocol-continue]");
+			const protocolCancel = document.querySelector("[data-protocol-cancel]");
+			let pendingProtocolHref = "";
+
+			const closeProtocolModal = () => {
+				if (!protocolModal) {
+					return;
+				}
+
+				protocolModal.hidden = true;
+				document.body.classList.remove("modal-open");
+				pendingProtocolHref = "";
+			};
+
+			const openProtocolModal = (href) => {
+				if (!protocolModal || !protocolContinue) {
+					window.location.href = href;
+					return;
+				}
+
+				pendingProtocolHref = href;
+				protocolModal.hidden = false;
+				document.body.classList.add("modal-open");
+				protocolContinue.focus();
+			};
+
+			document.querySelectorAll('a[href^="irc://"], a[href^="ircs://"]').forEach((link) => {
+				link.addEventListener("click", (event) => {
+					event.preventDefault();
+					openProtocolModal(link.href);
+				});
+			});
+
+			protocolContinue?.addEventListener("click", () => {
+				const href = pendingProtocolHref;
+				closeProtocolModal();
+
+				if (href) {
+					window.location.href = href;
+				}
+			});
+
+			protocolCancel?.addEventListener("click", closeProtocolModal);
+			protocolModal?.addEventListener("click", (event) => {
+				if (event.target === protocolModal) {
+					closeProtocolModal();
+				}
+			});
+			document.addEventListener("keydown", (event) => {
+				if (event.key === "Escape" && protocolModal && !protocolModal.hidden) {
+					closeProtocolModal();
+				}
+			});
 
 			const backToTop = document.getElementById("back-to-top");
 			if (backToTop) {
