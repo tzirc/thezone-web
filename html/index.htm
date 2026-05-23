@@ -52,6 +52,10 @@
 				linear-gradient(180deg, #101417 0, #07090b 48%, #030405 100%);
 		}
 
+		body.nav-open {
+			overflow: hidden;
+		}
+
 		body::before {
 			position: fixed;
 			inset: 0;
@@ -787,6 +791,19 @@
 				grid-template-columns: 1fr auto;
 			}
 
+			.header:has(.nav.open) {
+				position: fixed;
+				inset: 0;
+				z-index: 40;
+				display: grid;
+				grid-template-rows: auto 1fr;
+				align-items: start;
+				width: 100%;
+				padding: 18px 11px;
+				background: rgba(6, 8, 10, 0.78);
+				backdrop-filter: blur(20px);
+			}
+
 			.brand {
 				grid-row: 1;
 				grid-column: 1;
@@ -800,11 +817,13 @@
 
 			.nav {
 				display: none;
-				grid-row: 2;
-				grid-column: 1 / -1;
+				position: fixed;
+				inset: 72px 11px 18px;
 				grid-template-columns: 1fr;
-				width: 100%;
-				padding-bottom: 8px;
+				align-content: start;
+				width: auto;
+				padding: 18px 0 0;
+				overflow-y: auto;
 			}
 
 			.nav.open {
@@ -822,6 +841,11 @@
 			.button {
 				width: 100%;
 				min-height: 44px;
+			}
+
+			.nav a {
+				min-height: 52px;
+				border-radius: 14px;
 			}
 
 			.clw-timer {
@@ -1362,18 +1386,23 @@
 			const navToggle = document.querySelector(".nav-toggle");
 			const primaryNav = document.getElementById("primary-nav");
 			if (navToggle && primaryNav) {
+				const closePrimaryNav = () => {
+					primaryNav.classList.remove("open");
+					document.body.classList.remove("nav-open");
+					navToggle.setAttribute("aria-expanded", "false");
+					navToggle.setAttribute("aria-label", "Open navigation");
+				};
+
 				navToggle.addEventListener("click", () => {
 					const isOpen = primaryNav.classList.toggle("open");
+					document.body.classList.toggle("nav-open", isOpen);
 					navToggle.setAttribute("aria-expanded", String(isOpen));
 					navToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
 				});
 				primaryNav.querySelectorAll("a").forEach((link) => {
-					link.addEventListener("click", () => {
-						primaryNav.classList.remove("open");
-						navToggle.setAttribute("aria-expanded", "false");
-						navToggle.setAttribute("aria-label", "Open navigation");
-					});
+					link.addEventListener("click", closePrimaryNav);
 				});
+				document.querySelector(".brand")?.addEventListener("click", closePrimaryNav);
 			}
 
 			const backToTop = document.getElementById("back-to-top");
