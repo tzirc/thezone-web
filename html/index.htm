@@ -138,6 +138,10 @@
 			letter-spacing: 0.02em;
 		}
 
+		.header.clw-now * {
+			text-transform: uppercase;
+		}
+
 		.nav {
 			display: flex;
 			flex-wrap: wrap;
@@ -651,7 +655,7 @@
 
 		.person {
 			min-width: 0;
-			padding: 18px;
+			padding: 14px;
 			border: 1px solid var(--line);
 			border-radius: 16px;
 			background:
@@ -660,13 +664,20 @@
 			backdrop-filter: blur(12px);
 		}
 
+		.person-head {
+			display: grid;
+			grid-template-columns: auto minmax(0, 1fr);
+			gap: 10px;
+			align-items: center;
+		}
+
 		.person h3 {
-			margin: 10px 0 6px;
-			font-size: clamp(1.28rem, 2.4vw, 1.8rem);
+			margin: 0;
+			font-size: clamp(1.12rem, 2vw, 1.5rem);
 		}
 
 		.person .role {
-			margin: 0 0 10px;
+			margin: 8px 0;
 			color: var(--orange);
 			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 			font-size: 0.76rem;
@@ -1205,8 +1216,10 @@
 				</div>
 				<template data-person-template>
 					<div class="person">
-						<div class="glyph"></div>
-						<h3></h3>
+						<div class="person-head">
+							<div class="glyph"></div>
+							<h3></h3>
+						</div>
 						<p class="role"></p>
 						<p class="bio"></p>
 						<pre hidden></pre>
@@ -1257,6 +1270,7 @@
 
 	<script>
 		(() => {
+			const header = document.querySelector(".header");
 			const clwSection = document.querySelector("[data-clw-section]");
 			const clwCountdown = document.querySelector("[data-clw-countdown]");
 			const clwStatus = document.querySelector("[data-clw-status]");
@@ -1280,6 +1294,7 @@
 			const clwStart = (3 * 86400) + (17 * 3600);
 			const clwEnd = (3 * 86400) + (18 * 3600);
 			const weekSeconds = 7 * 86400;
+			let clwOverride = new URLSearchParams(window.location.search).get("clw") === "1" ? true : null;
 
 			const formatCountdown = (totalSeconds) => {
 				const days = Math.floor(totalSeconds / 86400);
@@ -1309,12 +1324,14 @@
 				}
 
 				const now = easternWeekSecond(new Date());
-				const isClw = now >= clwStart && now < clwEnd;
+				const isScheduledClw = now >= clwStart && now < clwEnd;
+				const isClw = clwOverride ?? isScheduledClw;
 				const secondsUntilClw = isClw
 					? 0
 					: (now < clwStart ? clwStart - now : weekSeconds - now + clwStart);
 
 				clwSection.classList.toggle("clw-now", isClw);
+				header?.classList.toggle("clw-now", isClw);
 				clwCountdown.replaceChildren(...formatCountdown(secondsUntilClw).map(([value, unit]) => {
 					const group = document.createElement("span");
 					const unitLabel = document.createElement("span");
@@ -1327,6 +1344,11 @@
 					return group;
 				}));
 				clwStatus.textContent = isClw ? "CLW is live" : "Next CLW in";
+			};
+
+			window.clw = (isEnabled) => {
+				clwOverride = Boolean(isEnabled);
+				updateClw();
 			};
 
 			updateClw();
@@ -1473,7 +1495,7 @@
 
 				const previewCount = () => {
 					if (window.matchMedia("(max-width: 680px)").matches) {
-						return 2;
+						return 3;
 					}
 
 					if (window.matchMedia("(max-width: 980px)").matches) {
