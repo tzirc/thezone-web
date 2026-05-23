@@ -488,6 +488,8 @@
 		.clw-countdown {
 			display: inline-flex;
 			gap: 0.28em;
+			max-width: 100%;
+			min-width: 0;
 			padding: 12px 14px;
 			border: 1px solid rgba(255, 159, 26, 0.42);
 			border-radius: 14px;
@@ -507,6 +509,7 @@
 			display: grid;
 			gap: 8px;
 			justify-items: end;
+			min-width: 0;
 		}
 
 		.clw-status {
@@ -827,9 +830,11 @@
 			}
 
 			.clw-countdown {
-				font-size: clamp(2rem, 12vw, 3.2rem);
 				width: 100%;
+				padding: 10px 8px;
+				gap: 0.2em;
 				justify-content: center;
+				font-size: clamp(1.45rem, 8.5vw, 2.3rem);
 			}
 
 			.logo {
