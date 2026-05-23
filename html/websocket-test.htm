@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>#TheZone WebSocket IRC Test</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			margin: 0;
+			padding: 24px;
+			background: #060708;
+			color: #f7f4eb;
+			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			line-height: 1.5;
+		}
+
+		button {
+			min-height: 42px;
+			padding: 0 14px;
+			border: 1px solid rgba(255, 255, 255, 0.18);
+			border-radius: 10px;
+			background: #ff9f1a;
+			color: #111111;
+			font: inherit;
+			font-weight: 800;
+			cursor: pointer;
+		}
+
+		pre {
+			margin-top: 18px;
+			white-space: pre-wrap;
+			overflow-wrap: anywhere;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>WebSocket IRC Test</h1>
+	<button type="button" id="connect">Connect</button>
+	<pre id="log">Idle.</pre>
+
+	<script>
+		(() => {
+			const log = document.getElementById("log");
+			const button = document.getElementById("connect");
+
+			const write = (message) => {
+				log.textContent += `\n${message}`;
+			};
+
+			button.addEventListener("click", () => {
+				const nick = `webtest${Math.floor(Math.random() * 10000)}`;
+				const ws = new WebSocket("wss://irc.tzirc.com:8097", ["text.ircv3.net"]);
+
+				log.textContent = `Connecting as ${nick}...`;
+
+				ws.addEventListener("open", () => {
+					write("connected");
+					ws.send("CAP LS 302");
+					ws.send(`NICK ${nick}`);
+					ws.send("USER webtest 0 * :WebSocket Test");
+				});
+
+				ws.addEventListener("message", (event) => {
+					write(`< ${event.data}`);
+
+					if (event.data.startsWith("PING ")) {
+						ws.send(`PONG ${event.data.slice(5)}`);
+					}
+
+					if (event.data.includes(" 001 ")) {
+						ws.send("JOIN #thezone");
+						ws.send("PRIVMSG #thezone :WebSocket test from browser");
+					}
+				});
+
+				ws.addEventListener("error", () => {
+					write("error");
+				});
+
+				ws.addEventListener("close", (event) => {
+					write(`closed ${event.code} ${event.reason}`);
+				});
+			});
+		})();
+	</script>
+</body>
+
+</html>
