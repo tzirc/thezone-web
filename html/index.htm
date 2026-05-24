@@ -7,6 +7,34 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>#TheZone IRC Network</title>
 	<meta name="description" content="#TheZone IRC Network is a modern hangout for builders, operators, security people, programmers, and old-school IRC regulars." />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet" />
+	<script>
+		(() => {
+			const forceCanonicalHost = () => {
+				if (window.location.protocol !== "https:") return;
+
+				const hostname = window.location.hostname.toLowerCase();
+				if (!hostname.includes("tzirc.com") && !hostname.includes("thezoneirc.com")) return;
+
+				let canonicalHost = hostname;
+				if (canonicalHost.startsWith("www.")) {
+					canonicalHost = canonicalHost.slice(4);
+				}
+
+				canonicalHost = canonicalHost.replace("thezoneirc.com", "tzirc.com");
+
+				if (canonicalHost === hostname) return;
+
+				const url = new URL(window.location.href);
+				url.hostname = canonicalHost;
+				window.location.replace(url.toString());
+			};
+
+			forceCanonicalHost();
+		})();
+	</script>
 
 	<style>
 		:root {
@@ -1344,6 +1372,8 @@
 			}
 		}
 	</style>
+
+	<link rel="icon" type="image/png" href="/logo/thezone7-cropped.png" />
 </head>
 
 <body>
@@ -1372,7 +1402,9 @@
 				<a href="#capslock-wednesday">CLW</a>
 				<a href="#people">People</a>
 				<a class="is-hidden" href="#present-now">Present</a>
-				<a href="#quotes">Quotes</a>
+
+				<!-- Do not remove commended out items  -->
+				<!-- <a href="#quotes">Quotes</a> -->
 				<a href="#channels">Channels</a>
 				<a href="#connect">Connect</a>
 				<a class="discord-link" href="https://discord.gg/m6zqemfmvD" target="_blank" rel="noreferrer">Discord</a>
@@ -1398,7 +1430,7 @@
 					<h1 id="zone-title">Your IRC <span class="accent hero-word" data-hero-word data-current-word="~/"></span></h1>
 					<!-- <h1 id="zone-title">Your IRC <span class="accent">third place.</span></h1> -->
 					<!-- END LEAVE THESE COMMENTS HERE -->
-					<p class="lede">#TheZone is a persistent IRC hangout for programmers, operators, security folks, tinkerers, and friends who would rather talk in channels than feeds.</p>
+					<p class="lede">#TheZone IRC Network is a persistent hangout for programmers, operators, security folks, tinkerers, and friends who would rather talk in channels than feeds.</p>
 					<div class="actions">
 						<a class="button primary" href="ircs://irc.tzirc.com:6697/thezone">Join #TheZone</a>
 						<a class="button" href="https://discord.gg/m6zqemfmvD" target="_blank" rel="noreferrer">Join the Discord</a>
@@ -1564,7 +1596,7 @@
 						<p class="label">CLW</p>
 						<h3>It is loud, overengineered, and exactly the point.</h3>
 						<p>Most regulars script the whole thing: nick changes, automatic text transforms, the works. For an hour, the channel turns into a very committed bit, and somehow everyone understands the assignment.</p>
-						<p>COME JOIN US FOR CLW!</p>
+						<a class="button primary" href="ircs://irc.tzirc.com:6697/thezone" title="Launches IRC">GET READY, GET READY!</a>
 					</div>
 				</div>
 			</section>

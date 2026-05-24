@@ -1,9 +1,10 @@
 services:
-  tzirc-com:
+  thezone-website:
     image: nginx:alpine
-    container_name: tzirc-com
+    container_name: thezone-website
     restart: unless-stopped
 
+    #/home/apps/containers/thezone-website/wwwroot/
     volumes:
       - ./html:/usr/share/nginx/html:ro
       - ./nginx.conf.template:/etc/nginx/templates/nginx.conf.template:ro

@@ -1,13 +1,14 @@
 services:
-  tzirc-com:
+  thezone-website:
     image: nginx:alpine
-    container_name: tzirc-com
+    container_name: thezone-website
     restart: unless-stopped
 
+    #/home/apps/containers/thezone-website/wwwroot/
     volumes:
-      - /home/apps/containers/tzirc.com/html:/usr/share/nginx/html:ro
-      - /home/apps/containers/tzirc.com/nginx.conf.template:/etc/nginx/templates/nginx.conf.template:ro
-      - /home/apps/containers/tzirc.com/logs:/var/log/nginx
+      - ./html:/usr/share/nginx/html:ro
+      - ./nginx.conf.template:/etc/nginx/templates/nginx.conf.template:ro
+      - ./logs:/var/log/nginx
 
     networks:
       - npm_default
@@ -20,7 +21,7 @@ services:
       resources:
         limits:
           # Hard limit: Docker will kill the container if it passes this
-          memory: 150M
+          memory: 120M
         reservations:
           # Soft limit: What the container expects to comfortably use
           memory: 50M
