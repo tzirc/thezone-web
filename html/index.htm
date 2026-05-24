@@ -218,6 +218,18 @@
 			box-shadow: 0 18px 52px rgba(255, 111, 0, 0.24);
 		}
 
+		.button.discord {
+			border-color: rgba(88, 101, 242, 0.9);
+			background: #5865f2;
+			color: #ffffff;
+			box-shadow: 0 14px 34px rgba(88, 101, 242, 0.26);
+		}
+
+		.button.discord:hover {
+			border-color: rgba(128, 139, 255, 0.95);
+			background: #6f7aff;
+		}
+
 		.nav a.discord-link {
 			border-color: rgba(88, 101, 242, 0.9);
 			background: #5865f2;
@@ -1153,16 +1165,34 @@
 
 		.connect {
 			display: grid;
-			grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1fr);
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 			gap: 18px;
 			align-items: stretch;
 		}
 
 		.connect-card {
+			display: grid;
+			grid-template-rows: auto auto 1fr auto;
 			padding: clamp(20px, 4vw, 34px);
 			border: 1px solid var(--line);
 			border-radius: 18px;
 			background: var(--panel-strong);
+		}
+
+		.connect-card.is-primary {
+			border-color: rgba(255, 159, 26, 0.38);
+			background:
+				linear-gradient(135deg, rgba(255, 159, 26, 0.12), transparent 44%),
+				var(--panel-strong);
+		}
+
+		.connect-card h3 {
+			margin: 8px 0 10px;
+			font-size: clamp(1.35rem, 2.8vw, 2.2rem);
+		}
+
+		.connect-card .actions {
+			margin-top: 18px;
 		}
 
 		.server-list {
@@ -1397,6 +1427,7 @@
 			</a>
 
 			<nav class="nav" id="primary-nav" aria-label="Primary navigation">
+				<a href="#top">~/</a>
 				<a href="#culture">Culture</a>
 				<a href="#kick-lotto">Kick Lotto</a>
 				<a href="#capslock-wednesday">CLW</a>
@@ -1700,28 +1731,48 @@
 
 
 			<section class="band" id="connect" aria-labelledby="connect-title">
-				<div class="connect">
-					<div class="connect-card">
+				<div class="band-head">
+					<div>
 						<p class="label">Connect</p>
-						<h2 id="connect-title">Bring your own client.</h2>
-						<p>Use your favorite IRC client and join directly. SSL is available on port 6697.</p>
-						<div class="actions">
-							<a class="button primary" href="ircs://irc.tzirc.com:6697/thezone">Join #TheZone</a>
-							<a class="button" href="https://discord.gg/m6zqemfmvD" target="_blank" rel="noreferrer">Join Discord</a>
-						</div>
+						<h2 id="connect-title">Choose your door.</h2>
+						<p>IRC is the native habitat, but we keep a few doors open. Pick the one that fits your setup.</p>
 					</div>
+				</div>
 
-					<div class="connect-card">
-						<p class="label">Network details</p>
+				<div class="connect">
+					<div class="connect-card is-primary">
+						<p class="label">IRC client</p>
+						<h3>Best experience.</h3>
+						<p>Use your favorite IRC client and connect directly. SSL is available on port 6697.</p>
 						<ul class="server-list">
 							<li><span>Server</span><strong>irc.tzirc.com</strong></li>
 							<li><span>Port</span><strong>6697 SSL</strong></li>
 							<li><span>Channel</span><strong>#TheZone</strong></li>
-							<li><span>Discord</span><strong>discord.gg/m6zqemfmvD</strong></li>
-							<li><span>Vibe</span><strong>technical, old-web, persistent</strong></li>
 						</ul>
+						<div class="actions">
+							<a class="button primary" href="ircs://irc.tzirc.com:6697/thezone">Join #TheZone</a>
+						</div>
+					</div>
+
+					<div class="connect-card">
+						<p class="label">Discord bridge</p>
+						<h3>Side door.</h3>
+						<p>Prefer Discord? The bridge is there for people already living in it, though the room's native language is still IRC.</p>
+						<div class="actions">
+							<a class="button discord" href="https://discord.gg/m6zqemfmvD" target="_blank" rel="noreferrer">Join Discord</a>
+						</div>
+					</div>
+
+					<div class="connect-card">
+						<p class="label">Web chat</p>
+						<h3>No install.</h3>
+						<p>Open #TheZone in your browser with no setup. Desktop recommended; the mobile experience is usable but cramped.</p>
+						<div class="actions">
+							<a class="button" href="https://chat.tzirc.com/" target="_blank" rel="noreferrer">Open Web Chat</a>
+						</div>
 					</div>
 				</div>
+				<p class="stats-meta">If an ircs:// link does nothing, your browser may not know which IRC client should handle it. You can always open your client manually with the details above.</p>
 			</section>
 		</main>
 
