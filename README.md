@@ -3,11 +3,9 @@
 
 ## TheZone TODO
 
-* Live nicklist.
 * Command cheatsheet.
 * Channel history timeline: Small, curated, not exhaustive. AOL add-ons, Syber/dos era, Kick Lotto logging begins in 2008, Discord bridge, modern relaunch.
 * Status page section: IRC server up, webchat up, stats API up, Discord bridge up, IRC Services up. Nothing enterprise-y.
-
 
 
 ## Development
@@ -16,6 +14,12 @@ To run, run the following:
 
 ```
 docker compose up -d
+```
+
+Open: 
+
+```
+https://localhost:5099/
 ```
 
 ## Content
@@ -40,7 +44,7 @@ People render by `order` from low to high. Entries with the same `order` are shu
 
 ## Publish
 
-To publish, upload to `/home/apps/containers/tzirc.com/`:
+To publish, upload on `wraith` to `/home/apps/containers/thezone-website/wwwroot/`:
 
 * `html/`
 * `nginx.conf.template`
@@ -50,6 +54,6 @@ To publish, upload to `/home/apps/containers/tzirc.com/`:
 As the `apps` user, run the following on the server:
 
 ```
-cd /home/apps/containers/tzirc.com/
+cd /home/apps/containers/thezone-website/wwwroot/
 sh restart.sh
 ```
