@@ -9,6 +9,10 @@ server {
     root /usr/share/nginx/html;
     index index.htm;
 
+    location = /discord {
+        return 302 https://discord.gg/m6zqemfmvD;
+    }
+
     location / {
         #try_files $uri $uri/ /index.htm;
         try_files $uri $uri/ =404;

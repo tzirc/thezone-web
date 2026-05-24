@@ -7,6 +7,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>#TheZone IRC Network</title>
 	<meta name="description" content="#TheZone IRC Network is a modern hangout for builders, operators, security people, programmers, and old-school IRC regulars." />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="#TheZone IRC Network" />
+	<meta property="og:title" content="#TheZone IRC Network" />
+	<meta property="og:description" content="#TheZone IRC Network is a modern hangout for builders, operators, security people, programmers, and old-school IRC regulars." />
+	<meta property="og:url" content="https://tzirc.com/" />
+	<meta property="og:image" content="https://tzirc.com/images/og-thezone.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="#TheZone IRC Network terminal invite card." />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="#TheZone IRC Network" />
+	<meta name="twitter:description" content="#TheZone IRC Network is a modern hangout for builders, operators, security people, programmers, and old-school IRC regulars." />
+	<meta name="twitter:image" content="https://tzirc.com/images/og-thezone.png" />
+	<link rel="icon" type="image/png" href="images/logo/thezone7-cropped.png" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -1195,6 +1209,20 @@
 			margin-top: 18px;
 		}
 
+		@media (min-width: 981px) {
+			.connect-card.is-web-chat {
+				order: 1;
+			}
+
+			.connect-card:not(.is-primary):not(.is-web-chat) {
+				order: 2;
+			}
+
+			.connect-card.is-primary {
+				order: 3;
+			}
+		}
+
 		.server-list {
 			display: grid;
 			gap: 10px;
@@ -1402,8 +1430,6 @@
 			}
 		}
 	</style>
-
-	<link rel="icon" type="image/png" href="/logo/thezone7-cropped.png" />
 </head>
 
 <body>
@@ -1421,13 +1447,13 @@
 					<path d="M37 87 95 52 123 61 65 102z" fill="#050505" stroke="#ffc266" stroke-width="3" />
 					<path d="M52 80 94 63" stroke="#ffffff" stroke-width="5" stroke-linecap="round" />
 				</svg>-->
-				<!-- <img src="logo/thezone-logo.svg" class="logo" aria-label="#TheZone orbital logo" /> -->
-				 <img src="logo/thezone7-cropped.png" class="logo" aria-label="#TheZone terminal logo" />
+				<!-- <img src="images/logo/thezone-logo.svg" class="logo" aria-label="#TheZone orbital logo" /> -->
+				 <img src="images/logo/thezone7-cropped.png" class="logo" aria-label="#TheZone terminal logo" />
 				<span>#TheZone</span>
 			</a>
 
 			<nav class="nav" id="primary-nav" aria-label="Primary navigation">
-				<a href="#top">~/</a>
+				<!-- <a href="#top">~/</a> -->
 				<a href="#culture">Culture</a>
 				<a href="#kick-lotto">Kick Lotto</a>
 				<a href="#capslock-wednesday">CLW</a>
@@ -1438,7 +1464,7 @@
 				<!-- <a href="#quotes">Quotes</a> -->
 				<a href="#channels">Channels</a>
 				<a href="#connect">Connect</a>
-				<a class="discord-link" href="https://discord.gg/m6zqemfmvD" target="_blank" rel="noreferrer">Discord</a>
+				<a class="discord-link" href="/discord" target="_blank" rel="noreferrer">Discord</a>
 				<a class="launch-link" href="ircs://irc.tzirc.com:6697/thezone">Launch IRC</a>
 			</nav>
 			<button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
@@ -1464,7 +1490,7 @@
 					<p class="lede">#TheZone IRC Network is a persistent hangout for programmers, operators, security folks, tinkerers, and friends who would rather talk in channels than feeds.</p>
 					<div class="actions">
 						<a class="button primary" href="ircs://irc.tzirc.com:6697/thezone">Join #TheZone</a>
-						<a class="button" href="https://discord.gg/m6zqemfmvD" target="_blank" rel="noreferrer">Join the Discord</a>
+						<a class="button" href="/discord" target="_blank" rel="noreferrer">Join the Discord</a>
 						<a class="button" href="#connect">Connection Details</a>
 					</div>
 				</div>
@@ -1487,9 +1513,9 @@
 								<path d="M37 87 95 52 123 61 65 102z" fill="#050505" stroke="#ffc266" stroke-width="3" />
 								<path d="M52 80 94 63" stroke="#ffffff" stroke-width="5" stroke-linecap="round" />
 							</svg> -->
-							<!-- <img src="logo/thezone-logo.svg" class="logo" aria-label="#TheZone orbital logo" /> -->
-							<img src="logo/thezone7-cropped.png" class="logo" aria-label="#TheZone terminal logo" />
-							<img src="logo/thezone-logo.svg" class="logo original-logo hidden" aria-label="#TheZone original logo" />
+							<!-- <img src="images/logo/thezone-logo.svg" class="logo" aria-label="#TheZone orbital logo" /> -->
+							<img src="images/logo/thezone7-cropped.png" class="logo" aria-label="#TheZone terminal logo" />
+							<img src="images/logo/thezone-logo.svg" class="logo original-logo hidden" aria-label="#TheZone original logo" />
 						</div>
 						<ul class="prompt">
 							<li><strong>server</strong> <span>irc.tzirc.com</span></li>
@@ -1757,22 +1783,24 @@
 					<div class="connect-card">
 						<p class="label">Discord bridge</p>
 						<h3>Side door.</h3>
-						<p>Prefer Discord? The bridge is there for people already living in it, though the room's native language is still IRC.</p>
+						<p>Prefer Discord? The bridge is there for people already living in it. We've got a good mix of people between the two. You'll still be able to see everything.</p>
 						<div class="actions">
-							<a class="button discord" href="https://discord.gg/m6zqemfmvD" target="_blank" rel="noreferrer">Join Discord</a>
+							<a class="button discord" href="/discord" target="_blank" rel="noreferrer">Join Discord</a>
 						</div>
 					</div>
 
-					<div class="connect-card">
+					<div class="connect-card is-web-chat">
 						<p class="label">Web chat</p>
 						<h3>No install.</h3>
-						<p>Open #TheZone in your browser with no setup. Desktop recommended; the mobile experience is usable but cramped.</p>
+						<p>Open #TheZone in your browser with no setup. Desktop recommended; the mobile experience is usable but cramped.
+							<br /><br />The page that opens will ask you to pick a nickname.
+						</p>
 						<div class="actions">
 							<a class="button" href="https://chat.tzirc.com/" target="_blank" rel="noreferrer">Open Web Chat</a>
 						</div>
 					</div>
 				</div>
-				<p class="stats-meta">If an ircs:// link does nothing, your browser may not know which IRC client should handle it. You can always open your client manually with the details above.</p>
+				<!-- <p class="stats-meta">If an ircs:// link does nothing, your browser may not know which IRC client should handle it. You can always open your client manually with the details above.</p> -->
 			</section>
 		</main>
 
@@ -1789,7 +1817,7 @@
 			<p>IRC links only work if you have an IRC client installed and your browser is allowed to hand off irc:// or ircs:// links to it.</p>
 			<p>If nothing opens or you receive an error, check your browser protocol-handler settings, or open your IRC client manually and connect to irc.tzirc.com / #TheZone.</p>
 			<div class="protocol-actions">
-				<button class="button primary" type="button" data-protocol-continue>Continue</button>
+				<a class="button primary" href="#" data-protocol-continue>Continue</a>
 				<button class="button" type="button" data-protocol-cancel>Cancel</button>
 			</div>
 		</div>
@@ -2015,6 +2043,11 @@
 				protocolModal.hidden = true;
 				document.body.classList.remove("modal-open");
 				pendingProtocolHref = "";
+				if (protocolContinue) {
+					protocolContinue.href = "#";
+					protocolContinue.removeAttribute("target");
+					protocolContinue.removeAttribute("rel");
+				}
 			};
 
 			const openProtocolModal = (href) => {
@@ -2024,6 +2057,14 @@
 				}
 
 				pendingProtocolHref = href;
+				protocolContinue.href = href;
+				if (navigator.userAgent.toLowerCase().includes("firefox")) {
+					protocolContinue.target = "_blank";
+					protocolContinue.rel = "noreferrer";
+				} else {
+					protocolContinue.removeAttribute("target");
+					protocolContinue.removeAttribute("rel");
+				}
 				protocolModal.hidden = false;
 				document.body.classList.add("modal-open");
 				protocolContinue.focus();
@@ -2037,12 +2078,7 @@
 			});
 
 			protocolContinue?.addEventListener("click", () => {
-				const href = pendingProtocolHref;
-				closeProtocolModal();
-
-				if (href) {
-					window.location.href = href;
-				}
+				window.setTimeout(closeProtocolModal, 0);
 			});
 
 			protocolCancel?.addEventListener("click", closeProtocolModal);
@@ -2493,7 +2529,7 @@
 			// 	if (logos.length == 0) return;
 			// 	for (var i = 0; i < logos.length; i++) {
 			// 		var el = logos[i]; // <img /> tag
-			// 		el.src = 'logo/thezone-logo.svg';
+			// 		el.src = 'images/logo/thezone-logo.svg';
 			// 	}
 
 			// })();

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+	<title id="title">#TheZone IRC Network</title>
+	<desc id="desc">Open graph sharing image for #TheZone IRC Network.</desc>
+	<defs>
+		<radialGradient id="orange-glow" cx="82%" cy="12%" r="65%">
+			<stop offset="0" stop-color="#ff9f1a" stop-opacity="0.36" />
+			<stop offset="0.42" stop-color="#ff6b00" stop-opacity="0.1" />
+			<stop offset="1" stop-color="#060708" stop-opacity="0" />
+		</radialGradient>
+		<radialGradient id="cyan-glow" cx="18%" cy="78%" r="58%">
+			<stop offset="0" stop-color="#68e4ff" stop-opacity="0.2" />
+			<stop offset="1" stop-color="#060708" stop-opacity="0" />
+		</radialGradient>
+		<linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
+			<stop offset="0" stop-color="#171b1e" />
+			<stop offset="1" stop-color="#07090b" />
+		</linearGradient>
+		<filter id="logo-glow" x="-60%" y="-60%" width="220%" height="220%">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="16" result="blur" />
+			<feFlood flood-color="#ff9f1a" flood-opacity="0.72" result="color" />
+			<feComposite in="color" in2="blur" operator="in" result="glow" />
+			<feMerge>
+				<feMergeNode in="glow" />
+				<feMergeNode in="SourceGraphic" />
+			</feMerge>
+		</filter>
+		<pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+			<path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.045" />
+		</pattern>
+	</defs>
+
+	<rect width="1200" height="630" fill="#060708" />
+	<rect width="1200" height="630" fill="url(#orange-glow)" />
+	<rect width="1200" height="630" fill="url(#cyan-glow)" />
+	<rect width="1200" height="630" fill="url(#grid)" />
+	<path d="M0 460 C210 420 330 630 560 548 C778 470 836 250 1200 294 L1200 630 L0 630 Z" fill="#ff9f1a" opacity="0.055" />
+	<path d="M0 82 L1200 500" stroke="#68e4ff" stroke-opacity="0.08" stroke-width="2" />
+	<path d="M220 630 L780 0" stroke="#ff9f1a" stroke-opacity="0.08" stroke-width="2" />
+
+	<g transform="translate(72 72)">
+		<rect width="1056" height="486" rx="28" fill="url(#panel)" stroke="#ffffff" stroke-opacity="0.16" />
+		<rect x="1" y="1" width="1054" height="72" rx="27" fill="#0d1114" opacity="0.92" />
+		<circle cx="36" cy="36" r="9" fill="#ff9f1a" />
+		<circle cx="64" cy="36" r="9" fill="#68e4ff" />
+		<circle cx="92" cy="36" r="9" fill="#8cff80" />
+		<text x="128" y="42" fill="#b9b0a1" font-family="Fira Code, Menlo, Consolas, monospace" font-size="20" font-weight="700">irc.tzirc.com / #TheZone</text>
+
+		<g transform="translate(752 114)">
+			<circle cx="120" cy="120" r="138" fill="#ff9f1a" opacity="0.08" />
+			<circle cx="120" cy="120" r="96" fill="#060708" opacity="0.72" />
+			<image href="../logo/thezone7-cropped.png" x="16" y="24" width="208" height="192" preserveAspectRatio="xMidYMid meet" filter="url(#logo-glow)" />
+		</g>
+
+		<text x="58" y="170" fill="#ff9f1a" font-family="Fira Code, Menlo, Consolas, monospace" font-size="30" font-weight="900" letter-spacing="4">IRC FOR PEOPLE WHO STILL BUILD THE INTERNET</text>
+		<text x="56" y="270" fill="#f7f4eb" font-family="Inter, Arial, sans-serif" font-size="86" font-weight="900">#TheZone</text>
+		<text x="58" y="336" fill="#ff9f1a" font-family="Fira Code, Menlo, Consolas, monospace" font-size="52" font-weight="900">Your IRC ~/</text>
+
+		<g font-family="Fira Code, Menlo, Consolas, monospace" font-size="25" font-weight="700">
+			<text x="60" y="424" fill="#68e4ff">&gt; /server irc.tzirc.com +6697</text>
+			<text x="60" y="464" fill="#8cff80">&gt; /join #TheZone</text>
+		</g>
+	</g>
+</svg>
