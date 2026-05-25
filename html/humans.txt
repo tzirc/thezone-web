@@ -1,0 +1,13 @@
+/* TEAM */
+Site:           TheZone IRC Network
+Website:        https://tzirc.com
+Repository:     https://github.com/tzirc/thezone-website
+
+Senior Devs:    Darc, Syber
+Devs:           Codex, Claude Code, Google Gemini
+
+/* THANKS */
+#TheZone
+
+/* SITE */
+Standards: HTML, CSS, JavaScript

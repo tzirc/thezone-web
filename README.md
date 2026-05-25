@@ -1,4 +1,16 @@
-# tzirc.com
+# thezone-website
+
+![#TheZone IRC Network Website](html/images/thezone-website.png)
+
+## Domains
+
+- https://tzirc.com
+- https://thezoneirc.com
+
+### Subdomains
+
+- https://chat.tzirc.com - controlled by an alternate project. Connects to the IRCd via websockets from the user's browser
+- https://klstats.tzirc.com - controlled by the [thezone-kicklotto](https://github.com/tzirc/thezone-kicklotto) project
 
 
 ## TheZone TODO
@@ -13,34 +25,26 @@
 To run, run the following:
 
 ```
-docker compose up -d
+sh run.sh
 ```
 
-Open: 
+Which runs: 
+
+```
+#contents of run.sh
+#rm compose.yml
+#mv compose.prod.yml compose.yml
+docker compose down
+docker compose up -d
+docker logs -f thezone-website
+```
+
+Then open: 
 
 ```
 https://localhost:5099/
 ```
 
-## Content
-
-People cards are loaded from `html/json/people.json`. Each entry includes display fields, a `bot` boolean, and an `order` value.
-
-People render by `order` from low to high. Entries with the same `order` are shuffled on each page load, which keeps priority handles pinned while letting the middle of the nicklist move around naturally.
-
-## Features
-
-* Capslock Wednesday mode runs every Wednesday from 5-6pm ET. It recalculates once per second, so it turns on and off automatically without a reload.
-* During CLW, the CLW section, header brand, and primary nav text switch to uppercase. The CLW countdown changes to `ITS HERE!` with a restrained red pulse.
-* CLW can be forced for testing with `?clw=1` or from the console with `clw(true)`. Use `clw(false)` to force it off. Manual/query overrides win over the live schedule until the page reloads or the console function changes the override.
-* The hero headline types through short words like `~/`, `Home`, `Haven`, `Shell`, `Room`, and `Signal`. Set `window.zoneHeroTyping = false` before the page script runs to disable it.
-* Double-click the large terminal logo to spin it like a top. When the spin finishes, the logo swaps between the current and original logo.
-* Kick Lotto has a live hourly countdown, copyable `!klstats` command pills, and a live last-24-hours stats panel from `klstats.tzirc.com`.
-* The quote log section loads six quotes from the KLStats quote-search API and lets visitors page through them in an IRC-style transcript view.
-* The Connect section presents three paths into the room: native IRC client, browser web chat at `chat.tzirc.com`, and the Discord bridge.
-* Social sharing metadata uses `html/images/og-thezone.png`, with `html/images/og-thezone.svg` kept as an editable source concept.
-* The mobile nav opens as a full-viewport blurred overlay instead of pushing the page down.
-* The page includes a soft cursor-follow glow on pointer devices.
 
 ## Publish
 
@@ -49,11 +53,72 @@ To publish, upload on `wraith` to `/home/apps/containers/thezone-website/wwwroot
 * `html/`
 * `nginx.conf.template`
 * `compose.prod.yml`
-* `restart.sh`
+    - rename this as needed to `compose.yml`
+* `run.sh`
 
 As the `apps` user, run the following on the server:
 
 ```
 cd /home/apps/containers/thezone-website/wwwroot/
-sh restart.sh
+
+# uncomment this lines below to replace compose.yml with compose.prod.yml - prior backup is deleted
+#rm compose.yml.bak  
+#mv compose.yml compose.yml.bak
+#mv compose.prod.yml compose.yml
+
+sh run.sh
 ```
+
+
+## Content
+
+### Hero Section
+
+* The hero headline types through short words like `~/`, `Home`, `Haven`, `Shell`, `Room`, and `Signal`. Set `window.zoneHeroTyping = false` before the page script runs to disable it.
+* Double-click the large terminal logo to spin it like a top. When the spin finishes, the logo swaps between the current and original logo.
+* Directly under the hero area and terminal logo is a LAST 2 HRS section, displaying nicks seen by the presence system in the last 2 hours. All nicks in the channel, despite idling, are counted as present. Bots are not excluded intentionally.
+
+### Culture
+
+* Six cards show explaining a bit of the culture of the network or channel are present.
+
+### Kick Lotto
+
+* Kick Lotto has a live hourly countdown, copyable `!klstats` command pills, and a live last-24-hours stats panel from `klstats.tzirc.com` along with a pill button to see more there.
+
+### CLW: Caps Lock Wednesday
+
+* Caps Lock Wednesday (CLW) mode runs every Wednesday from 5-6pm ET. It recalculates once per second, so it turns on and off automatically without a reload.
+* During CLW, the CLW section, header brand, and primary nav text switch to uppercase. The CLW countdown changes to `ITS HERE!` or some version of that with a restrained red pulse.
+* CLW can be forced for testing with `?clw=1` or from the console with `clw(true)`. Use `clw(false)` to force it off. Manual/query overrides win over the live schedule until the page reloads or the console function changes the override.
+
+### People
+
+* People cards are loaded from `html/json/people.json`. Each entry includes display fields, a `bot` boolean, and an `order` value.
+* People render by `order` from low to high. Entries with the same `order` are shuffled on each page load, which keeps priority handles pinned while letting the middle of the nicklist move around naturally.
+
+## Quotes are loaded from an API 
+
+* The quote log section loads six quotes from the KLStats quote-search API and lets visitors page through them in an IRC-style transcript view.
+* The quote log on the homepage is populated client-side from the KLStats API:
+```text
+https://klstats.tzirc.com/api/v1/quotes/quote-search
+```
+* `html/index.htm` requests quotes with `n=20`, `query=a`, `channel=thezone`, and a base64-encoded `exclude` list for filtering obvious NSFW terms. The response is expected to include a `data` array. Each quote uses `full_markup` when available, falls back to `preview_markup`, and displays the quote title plus poster/date metadata.
+* The quote browser keeps the fetched rows in memory and uses the Prev/Next buttons to cycle through them without making another API request. If the API request fails or returns no rows, the section shows the local "Quote archive could not be loaded" fallback.
+* API endpoints are described at https://klstats.tzirc.com on the `API Docs` tab
+* Users can submit quotes for consideration by joining #TheZone, typing `!quote add`, and completing the form that is messaged to them. Quotes submitted DO need to be approved by an operator.
+
+### Channels
+
+* Since #TheZone is the only channel currently of note on the network, a section appears inviting others to bring their channel if they wish.
+
+### Connect 
+
+* The Connect section presents three paths into the room: native IRC client via an `ircs://` link, browser web chat at `chat.tzirc.com`, and the Discord bridge.
+
+### Other Notes
+
+* Social sharing metadata uses `html/images/og-thezone.png`, with `html/images/og-thezone.svg` kept as an editable source concept.
+* The mobile nav opens as a full-viewport blurred overlay instead of pushing the page down.
+* The page includes a soft cursor-follow glow on pointer devices.
