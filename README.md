@@ -122,3 +122,4 @@ https://klstats.tzirc.com/api/v1/quotes/quote-search
 * Social sharing metadata uses `html/images/og-thezone.png`, with `html/images/og-thezone.svg` kept as an editable source concept.
 * The mobile nav opens as a full-viewport blurred overlay instead of pushing the page down.
 * The page includes a soft cursor-follow glow on pointer devices.
+* On low-performance devices, animations are automatically suppressed. The script adds `js-reduce-motion` to `<html>` using two checks: an immediate heuristic (≤2 hardware threads, e.g. Core 2 Duo) and an async 15-frame RAF benchmark that fires if average frame time exceeds 25ms (~40fps). When active, it disables the marquee, CLW countdown pulse, logo spin, hero typing, and cursor glow — the same set as `prefers-reduced-motion`.

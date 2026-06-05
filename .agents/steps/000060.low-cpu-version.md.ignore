@@ -1,0 +1,3 @@
+I tried this code on an old 2009 iMac with a Core 2 Duo (which I installed Debian 13 Trixie on, so it is a modern OS). And animation and such ran, but it was SLOW. And peaked both cores to 100% CPU.
+
+I want to use javascript or some other method you would recommend to prevent any animation if the computer it is being ran on cannot handle it. Is there a way to test for this and essentially only allow the "prefers-reduced-motion" version of the site?

@@ -659,6 +659,12 @@
 			}
 		}
 
+		html.js-reduce-motion .presence-marquee-track,
+		html.js-reduce-motion .clw-now .clw-countdown,
+		html.js-reduce-motion .orbit-wrap .logo.logo-spin {
+			animation: none;
+		}
+
 		.prompt {
 			display: grid;
 			gap: 8px;
@@ -1845,8 +1851,32 @@
 
 	<script>
 		(() => {
+			// Detect low-performance devices and suppress animations before they start.
+			// Immediate heuristic: ≤2 hardware threads typically means an old/slow CPU.
+			// Async RAF benchmark catches anything else: if avg frame time exceeds 25ms
+			// (~40fps) over the first 15 frames, we apply the same reduced-motion class.
+			const _html = document.documentElement;
+			if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+				if (navigator.hardwareConcurrency <= 2) {
+					_html.classList.add("js-reduce-motion");
+				} else {
+					let _perfLast = performance.now(), _perfSamples = [];
+					const _perfCheck = (now) => {
+						_perfSamples.push(now - _perfLast);
+						_perfLast = now;
+						if (_perfSamples.length < 15) {
+							requestAnimationFrame(_perfCheck);
+						} else {
+							const avg = _perfSamples.reduce((a, b) => a + b, 0) / 15;
+							if (avg > 25) _html.classList.add("js-reduce-motion");
+						}
+					};
+					requestAnimationFrame(_perfCheck);
+				}
+			}
+
 			const heroWord = document.querySelector("[data-hero-word]");
-			if (heroWord && window.zoneHeroTyping !== false && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			if (heroWord && window.zoneHeroTyping !== false && !window.matchMedia("(prefers-reduced-motion: reduce)").matches && !_html.classList.contains("js-reduce-motion")) {
 				const initialHeroWord = heroWord.dataset.currentWord || "~/";
 				const shuffledHeroWords = ["home", "haven", "shell", "room", "node", "port", "link", "signal", "base", "hub", "nest", "log", "tty", "term", "place", "network", "channel", "#", "$", "root"]
 					.map((word) => ({ word, sort: Math.random() }))
@@ -2188,10 +2218,11 @@
 			// /Spin
 
 			const cursorGlow = document.getElementById("cursor-glow");
-			if (cursorGlow) {
+			if (cursorGlow && !_html.classList.contains("js-reduce-motion")) {
 				let glowRaf = 0;
 				document.addEventListener("mousemove", (e) => {
-					if (glowRaf) return;
+					// Also check here so the async RAF benchmark can stop the glow mid-session.
+					if (glowRaf || _html.classList.contains("js-reduce-motion")) return;
 					glowRaf = requestAnimationFrame(() => {
 						cursorGlow.style.setProperty("--mx", e.clientX + "px");
 						cursorGlow.style.setProperty("--my", e.clientY + "px");
