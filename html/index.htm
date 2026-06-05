@@ -646,6 +646,10 @@
 		}
 
 		@media (prefers-reduced-motion: reduce) {
+			html {
+				scroll-behavior: auto;
+			}
+
 			.presence-marquee-track {
 				animation: none;
 			}
@@ -663,6 +667,10 @@
 		html.js-reduce-motion .clw-now .clw-countdown,
 		html.js-reduce-motion .orbit-wrap .logo.logo-spin {
 			animation: none;
+		}
+
+		html.js-reduce-motion {
+			scroll-behavior: auto;
 		}
 
 		.prompt {
@@ -2148,7 +2156,7 @@
 					});
 				}, { passive: true });
 				backToTop.addEventListener("click", () => {
-					window.scrollTo({ top: 0, behavior: "smooth" });
+					window.scrollTo({ top: 0, behavior: _html.classList.contains("js-reduce-motion") ? "instant" : "smooth" });
 				});
 			}
 
