@@ -216,6 +216,30 @@
 		"order": 800
 	},
 	{
+		"glyph": "SN",
+		"name": "snippa",
+		"role": "Zoner",
+		"description": "A deep-cut #TheZone handle from the older roll call. Brief, sharp, and exactly the kind of nick that belongs in IRC folklore.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "SG",
+		"name": "syg",
+		"role": "Zoner / AOL-era connection",
+		"description": "One of the links back to the AOL days, still occasionally resurfacing with old names, old stories, and reminders that the internet used to be a much smaller place.",
+		"bot": false,
+		"order": 800
+	},
+	{
+		"glyph": "MR",
+		"name": "Mirage",
+		"role": "Zoner / AOL-era connection",
+		"description": "AOL programmer, reverse-engineering enthusiast, and occasional excavator of internet archaeology. Somehow ended up proving Mark Zuckerberg used (his) Jaguar32.bas.",
+		"bot": false,
+		"order": 800
+	},
+	{
 		"glyph": "ZS",
 		"name": "ZoneServ",
 		"role": "Service bot / basically ChanServ",
