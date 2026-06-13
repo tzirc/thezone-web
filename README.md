@@ -1,6 +1,10 @@
 # thezone-website
+<!-- <img src="html/images/logo/thezone7-cropped.png" alt="" width="48" height="48" align="top" style="margin-right: 1rem;">  -->
+
+[![IRC: #TheZone](https://img.shields.io/badge/IRC-%23thezone%20on%20TheZoneIRC-1459b8)](https://chat.tzirc.com/)
 
 ![#TheZone IRC Network Website](html/images/thezone-website.png)
+
 
 ## Domains
 
