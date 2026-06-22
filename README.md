@@ -29,13 +29,13 @@
 To run, run the following:
 
 ```
-sh run.sh
+sh run
 ```
 
 Which runs: 
 
 ```
-#contents of run.sh
+#contents of run
 #rm compose.yml
 #mv compose.prod.yml compose.yml
 docker compose down
@@ -120,6 +120,15 @@ https://klstats.tzirc.com/api/v1/quotes/quote-search
 ### Connect 
 
 * The Connect section presents three paths into the room: native IRC client via an `ircs://` link, browser web chat at `chat.tzirc.com`, and the Discord bridge.
+
+### Zone shell
+
+* Press `` ` `` (backtick, the key left of `1`) anywhere on the page (except while typing in a form field) to open a full-screen terminal overlay powered by [xterm.js](https://xtermjs.org/).
+* If the key does nothing, open the browser console and run `zoneShellToggle()` to test the overlay directly.
+* The shell uses a black background and `var(--orange)` text with a `~/` prompt.
+* Type `help` at the prompt for the current command list. Built-in easter eggs include `whoami`, `who` (live #thezone presence from klstats), `quote` (random quote), `klstats top10` / `klstats top10 all` (Kick Lotto top 10 from klstats), `eyespy` (tail the last 50 #thezone log lines from klstats, polling every 3 seconds until Ctrl+C), `clw` (CLW status / all-caps output during CLW), `vim`, `sudo`, and `rm -rf /`.
+* `clear` clears the terminal. `exit`, `quit`, or `:wq` close the shell.
+* Press `` ` `` or `Esc` to close the overlay. xterm.js loads from the CDN on first open so the main page stays light on first paint.
 
 ### Other Notes
 
