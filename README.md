@@ -22,7 +22,38 @@
 * Command cheatsheet.
 * Channel history timeline: Small, curated, not exhaustive. AOL add-ons, Syber/dos era, Kick Lotto logging begins in 2008, Discord bridge, modern relaunch.
 * Status page section: IRC server up, webchat up, stats API up, Discord bridge up, IRC Services up. Nothing enterprise-y.
+* Show channels list and number of users by channel (and add discord NAMES count for #thezone or channels that have EyeSeeYou present).
 
+### AI Ideas for fun additions that fit your community (builders/ops/security/IRC veterans):
+* Channel/Community Games
+    - !dice / !roll — Simple dice roller in the terminal shell (already have Botto, could expose via web)
+    - !8ball — Magic 8-ball responses, IRC classic
+    - !choose — Bot picks between options: !choose pizza | tacos | ramen
+    - !coinflip — Heads/tails with ASCII art
+* Terminal Shell Expansions
+    - matrix — Falling green code animation (full-screen)
+    - asciiquarium — Port of the classic terminal aquarium
+    - fortune — Random hacker/IRC/programming fortunes
+    - uptime — Show network/channel uptime stats
+    - weather — Already have Bender's !w, expose in shell
+    - calc — Quick calculator: calc 2^16
+* Visual/Interactive
+    - Network map — Interactive SVG showing server topology (even if just 1 server, make it look cool)
+    - Kick Lotto "Hall of Fame" — All-time winners with animated "trophy" display
+    - CLW leaderboard — Who participated most, longest all-caps streak
+    - Channel timeline — Scrollable visual history (AOL era → Kick Lotto 2008 → Discord bridge → relaunch)
+* Social/Community
+    - !seen <nick> — Last seen timestamp (via klstats presence API)
+    - !karma <nick>++ — Lightweight karma system displayed on site
+    - Topic roulette — Random conversation starters for quiet hours
+    - "Zoner of the Week" — Highlight a regular with their bio/stats
+* Technical Showcase (fits your audience)
+    - Raw log viewer — Searchable channel logs with syntax highlighting
+    - IRC command reference — Interactive cheatsheet (your TODO)
+    - Live raw IRC feed — WebSocket-connected raw message stream (debug view)
+* Seasonal/Event
+    - April 1st mode — Fake net splits, inverted colors, upside-down text
+    - Holiday themes — Subtle logo variants (pumpkin, snowflake, etc.)
 
 ## Development
 
@@ -126,7 +157,7 @@ https://klstats.tzirc.com/api/v1/quotes/quote-search
 * Press `` ` `` (backtick, the key left of `1`) anywhere on the page (except while typing in a form field) to open a full-screen terminal overlay powered by [xterm.js](https://xtermjs.org/).
 * If the key does nothing, open the browser console and run `zoneShellToggle()` to test the overlay directly.
 * The shell uses a black background and `var(--orange)` text with a `~/` prompt.
-* Type `help` at the prompt for the current command list. Built-in easter eggs include `whoami`, `who` (live #thezone presence from klstats), `quote` (random quote), `klstats top10` / `klstats top10 all` (Kick Lotto top 10 from klstats), `eyespy` (tail the last 50 #thezone log lines from klstats, polling every 3 seconds until Ctrl+C), `clw` (CLW status / all-caps output during CLW), `vim`, `sudo`, and `rm -rf /`.
+* Type `help` at the prompt for the current command list. Built-in easter eggs include `whoami`, `who` (live #thezone presence from klstats), `seen <nick>` (last seen via klstats presence API), `quote` (random quote), `klstats top10` / `klstats top10 all` (Kick Lotto top 10 from klstats), `eyespy` (tail the last 50 #thezone log lines from klstats, polling every 3 seconds until Ctrl+C), `clw` (CLW status / all-caps output during CLW), `vim`, `sudo`, and `rm -rf /`.
 * `clear` clears the terminal. `exit`, `quit`, or `:wq` close the shell.
 * Press `` ` `` or `Esc` to close the overlay. xterm.js loads from the CDN on first open so the main page stays light on first paint.
 
