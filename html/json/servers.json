@@ -1,0 +1,48 @@
+{
+    "servers": [
+        {
+            "server": "irc.tzirc.com",
+            "role": "hub, round-robin",
+            "admin": "Syber & Darc",
+            "port-insecure": "6667",
+            "port-secure": "6697",
+            "location": "Chicago, IL, USA"
+        },
+        {
+            "server": "services.tzirc.com",
+            "role": "IRC services",
+            "admin": "Syber & Darc",
+            "port-insecure": null,
+            "port-secure": null,
+            "location": "Chicago, IL, USA"
+        },
+        {
+            "server": "rock.tzirc.com",
+            "role": "client server",
+            "admin": "Syber & Darc",
+            "port-insecure": "6667",
+            "port-secure": "6697",
+            "location": "Internet"
+        },
+        {
+            "server": "ghost.tzirc.com",
+            "role": "client server",
+            "admin": "Syber & Darc",
+            "port-insecure": "6667",
+            "port-secure": "6697",
+            "location": "Internet"
+        },
+        {
+            "server": "whynot.tzirc.com",
+            "role": "client server",
+            "admin": "Syber & Darc",
+            "port-insecure": "6667",
+            "port-secure": "6697",
+            "location": "Internet"
+        }
+    ], 
+    "meta": {
+        "servers": 4,
+        "last_modified": "2026-06-26T09:58:20 PM"
+    }
+}
