@@ -157,6 +157,17 @@ https://klstats.tzirc.com/api/v1/quotes/quote-search
 
 * The Connect section presents three paths into the room: native IRC client via an `ircs://` link, browser web chat at `chat.tzirc.com`, and the Discord bridge.
 
+### IRC Services
+
+* The section below Connect introduces the network's Anope services: NickServ for nickname accounts, ChanServ for channel registration, BotServ for service bots, and HostServ for virtual hosts.
+* The NickServ guide provides copyable registration and manual-identification commands and recommends SASL PLAIN over TLS port 6697. The ChanServ guide covers joining and registering a channel to an identified NickServ account.
+* Example credentials and names are placeholders. Visitors are explicitly warned to replace them and never paste a real services password into a public channel.
+
+### Servers
+
+* The server section directly after Quote Log loads the roster from `html/json/servers.json` and displays each hostname, role, administrator, location, and available connection ports.
+* Server cards use three columns on desktop, two on tablets, and one on mobile. Missing ports are omitted, and an inline status message remains visible if the roster cannot be loaded.
+
 ### Zone shell
 
 * Press `` ` `` (backtick, the key left of `1`) anywhere on the page (except while typing in a form field) to open a full-screen terminal overlay powered by [xterm.js](https://xtermjs.org/).

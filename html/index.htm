@@ -1344,6 +1344,168 @@
 			text-align: right;
 		}
 
+		.servers-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 14px;
+		}
+
+		.network-server-card {
+			min-width: 0;
+			padding: 20px;
+			border: 1px solid rgba(104, 228, 255, 0.24);
+			border-radius: 16px;
+			background:
+				linear-gradient(145deg, rgba(104, 228, 255, 0.08), transparent 48%),
+				var(--panel-strong);
+		}
+
+		.network-server-card h3 {
+			margin: 0;
+			color: var(--cyan);
+			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			font-size: clamp(1.05rem, 2vw, 1.35rem);
+			overflow-wrap: anywhere;
+		}
+
+		.network-server-role {
+			max-width: none;
+			margin: 8px 0 16px;
+			color: var(--orange);
+			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			font-size: 0.78rem;
+			font-weight: 900;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.network-server-details {
+			display: grid;
+			gap: 0;
+			margin: 0;
+			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			font-size: 0.82rem;
+		}
+
+		.network-server-details div {
+			display: grid;
+			grid-template-columns: auto minmax(0, 1fr);
+			gap: 12px;
+			padding: 9px 0;
+			border-top: 1px solid rgba(255, 255, 255, 0.09);
+		}
+
+		.network-server-details dt {
+			color: var(--dim);
+		}
+
+		.network-server-details dd {
+			min-width: 0;
+			margin: 0;
+			color: var(--ink);
+			overflow-wrap: anywhere;
+			text-align: right;
+		}
+
+		.services-roster {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 14px;
+			margin: 0 0 18px;
+			padding: 0;
+			list-style: none;
+		}
+
+		.services-roster li {
+			display: grid;
+			gap: 4px;
+			padding: 14px;
+			border: 1px solid rgba(169, 148, 255, 0.28);
+			border-radius: 14px;
+			background: rgba(169, 148, 255, 0.07);
+		}
+
+		.services-roster strong {
+			color: var(--violet);
+			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			font-size: 0.92rem;
+		}
+
+		.services-roster span {
+			color: var(--muted);
+			font-size: 0.82rem;
+		}
+
+		.service-guides {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 14px;
+		}
+
+		.service-guide {
+			min-width: 0;
+			padding: clamp(20px, 4vw, 30px);
+			border: 1px solid var(--line);
+			border-radius: 18px;
+			background:
+				linear-gradient(145deg, rgba(169, 148, 255, 0.1), transparent 48%),
+				var(--panel-strong);
+		}
+
+		.service-guide h3 {
+			margin: 8px 0 10px;
+			font-size: clamp(1.35rem, 2.8vw, 2.1rem);
+		}
+
+		.service-guide h4 {
+			margin: 22px 0 6px;
+			color: var(--cyan);
+			font-size: 1rem;
+		}
+
+		.service-steps {
+			display: grid;
+			gap: 16px;
+			margin: 18px 0 0;
+			padding-left: 1.4rem;
+		}
+
+		.service-steps li::marker {
+			color: var(--orange);
+			font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+			font-weight: 900;
+		}
+
+		.service-guide .command-list {
+			display: grid;
+			margin-top: 8px;
+		}
+
+		.service-guide .command-copy {
+			max-width: 100%;
+			justify-self: start;
+		}
+
+		.service-guide .command-list code {
+			max-width: 100%;
+			height: auto;
+			min-height: 42px;
+			padding-block: 8px;
+			overflow-wrap: anywhere;
+			text-align: left;
+			white-space: normal;
+		}
+
+		.service-note {
+			max-width: none;
+			margin-top: 18px;
+			padding: 12px 14px;
+			border-left: 3px solid var(--orange);
+			background: rgba(255, 159, 26, 0.08);
+			color: var(--muted);
+			font-size: 0.86rem;
+		}
+
 		.footer {
 			display: flex;
 			flex-wrap: wrap;
@@ -1381,6 +1543,15 @@
 			}
 
 			.people-grid {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.servers-grid {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.services-roster,
+			.service-guides {
 				grid-template-columns: repeat(2, minmax(0, 1fr));
 			}
 
@@ -1531,6 +1702,15 @@
 				grid-template-columns: 1fr;
 			}
 
+			.servers-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.services-roster,
+			.service-guides {
+				grid-template-columns: 1fr;
+			}
+
 			#quotes {
 				display: grid;
 			}
@@ -1591,6 +1771,7 @@
 				<a href="#kick-lotto">Kick Lotto</a>
 				<a href="#capslock-wednesday">CLW</a>
 				<a href="#people">People</a>
+				<a href="#servers">Servers</a>
 				<a class="is-hidden" href="#present-now">Present</a>
 
 				<!-- Do not remove commended out items  -->
@@ -1859,6 +2040,45 @@
 				</div>
 			</section>
 
+			<section class="band" id="servers" aria-labelledby="servers-title">
+				<div class="band-head">
+					<div>
+						<p class="label">Network nodes</p>
+						<h2 id="servers-title">TheZone IRC Network</h2>
+						<p>A small IRC network is still a network. These are the endpoints, services, and client servers keeping #TheZone connected.</p>
+					</div>
+				</div>
+
+				<div class="servers-grid" data-servers-grid aria-live="polite">
+					<p class="stats-meta" data-servers-status>Loading server roster...</p>
+				</div>
+
+				<template data-server-template>
+					<article class="network-server-card">
+						<h3 data-server-name></h3>
+						<p class="network-server-role" data-server-role></p>
+						<dl class="network-server-details">
+							<div>
+								<dt>Admin</dt>
+								<dd data-server-admin></dd>
+							</div>
+							<div>
+								<dt>Location</dt>
+								<dd data-server-location></dd>
+							</div>
+							<div data-server-secure-row>
+								<dt>TLS port</dt>
+								<dd data-server-secure-port></dd>
+							</div>
+							<div data-server-insecure-row>
+								<dt>Plain port</dt>
+								<dd data-server-insecure-port></dd>
+							</div>
+						</dl>
+					</article>
+				</template>
+			</section>
+
 
 
 
@@ -1866,9 +2086,9 @@
 				<div class="channel-panel">
 					<div class="channel-copy">
 						<p class="label">Bring your room</p>
-						<h2 id="channels-title">TheZone is a network.</h2>
+						<h2 id="channels-title">Channels = rooms.</h2>
 						<p>Have a project, crew, guild, lab, or suspiciously specific friend group that needs a quiet IRC home? Bring it over.</p>
-						<p>We can help you get settled, register the room, and keep the lights on. You bring the topic drift; we will bring the server.</p>
+						<!-- <p>We can help you get settled, register the room, and keep the lights on. You bring the topic drift; we will bring the server.</p> -->
 					</div>
 
 					<div class="channel-terminal" aria-label="IRC channel list">
@@ -1951,6 +2171,99 @@
 				</div>
 				<!-- <p class="stats-meta">If an ircs:// link does nothing, your browser may not know which IRC client should handle it. You can always open your client manually with the details above.</p> -->
 			</section>
+
+			<section class="band" id="services" aria-labelledby="services-title">
+				<div class="band-head">
+					<div>
+						<p class="label">IRC services</p>
+						<h2 id="services-title">Keep your name. Keep your room.</h2>
+						<p>TheZone runs Anope IRC Services for nickname accounts, channel registration, service bots, and virtual hosts.</p>
+					</div>
+				</div>
+
+				<ul class="services-roster" aria-label="Available IRC services">
+					<li><strong>NickServ</strong><span>Nickname accounts</span></li>
+					<li><strong>ChanServ</strong><span>Channel registration</span></li>
+					<li><strong>BotServ</strong><span>Service bots</span></li>
+					<li><strong>HostServ</strong><span>Virtual hosts</span></li>
+				</ul>
+
+				<div class="service-guides">
+					<article class="service-guide">
+						<p class="label">NickServ</p>
+						<h3>Register and identify.</h3>
+						<p>Register the nickname you are currently using, then authenticate whenever you reconnect.</p>
+
+						<ol class="service-steps">
+							<li>
+								<strong>Choose your nickname.</strong>
+								<div class="command-list" aria-label="Choose nickname command">
+									<button class="command-copy" type="button" data-copy-command="/nick YourNick" title="Copy">
+										<code>/nick YourNick</code>
+									</button>
+								</div>
+							</li>
+							<li>
+								<strong>Register it with a strong, unique password and your email address.</strong>
+								<div class="command-list" aria-label="Register nickname command">
+									<button class="command-copy" type="button" data-copy-command="/msg NickServ REGISTER YourStrongPassword you@example.com" title="Copy">
+										<code>/msg NickServ REGISTER YourStrongPassword you@example.com</code>
+									</button>
+								</div>
+							</li>
+						</ol>
+
+						<h4>SASL identification (recommended)</h4>
+						<p>In your IRC client, enable SASL PLAIN and use your NickServ account name and password. Connect with TLS on port 6697 so your credentials are encrypted in transit.</p>
+
+						<h4>Manual NickServ identification</h4>
+						<p>If your client does not support SASL, identify after connecting:</p>
+						<div class="command-list" aria-label="Identify nickname command">
+							<button class="command-copy" type="button" data-copy-command="/msg NickServ IDENTIFY YourStrongPassword" title="Copy">
+								<code>/msg NickServ IDENTIFY YourStrongPassword</code>
+							</button>
+						</div>
+
+						<p class="service-note">Never paste your real services password into a public channel. Replace the example values before using these commands.</p>
+					</article>
+
+					<article class="service-guide">
+						<p class="label">ChanServ</p>
+						<h3>Register your channel.</h3>
+						<p>You must be identified to NickServ and have operator status in the channel you want to register.</p>
+
+						<ol class="service-steps">
+							<li>
+								<strong>Join the channel.</strong>
+								<div class="command-list" aria-label="Join channel command">
+									<button class="command-copy" type="button" data-copy-command="/join #your-channel" title="Copy">
+										<code>/join #your-channel</code>
+									</button>
+								</div>
+							</li>
+							<li>
+								<strong>Register it to your NickServ account.</strong>
+								<div class="command-list" aria-label="Register channel command">
+									<button class="command-copy" type="button" data-copy-command="/msg ChanServ REGISTER #your-channel Your channel description" title="Copy">
+										<code>/msg ChanServ REGISTER #your-channel Your channel description</code>
+									</button>
+								</div>
+							</li>
+						</ol>
+
+						<h4>Learn the available settings</h4>
+						<p>ChanServ can manage access, modes, topics, and more. Ask it for the commands enabled on this network:</p>
+						<div class="command-list" aria-label="ChanServ help command">
+							<button class="command-copy" type="button" data-copy-command="/msg ChanServ HELP" title="Copy">
+								<code>/msg ChanServ HELP</code>
+							</button>
+						</div>
+
+						<p class="service-note">Anope links channel ownership to your NickServ account. There is no separate ChanServ channel password.</p>
+					</article>
+				</div>
+			</section>
+
 		</main>
 
 		<footer class="footer">
@@ -3317,6 +3630,72 @@
 				window.addEventListener("resize", updatePeople);
 				loadPeople();
 			}
+
+			const serversGrid = document.querySelector("[data-servers-grid]");
+			const serverTemplate = document.querySelector("[data-server-template]");
+			const serversStatus = document.querySelector("[data-servers-status]");
+
+			const setServerPort = (card, rowSelector, valueSelector, port) => {
+				const row = card.querySelector(rowSelector);
+				const value = card.querySelector(valueSelector);
+
+				if (!row || !value) {
+					return;
+				}
+
+				row.hidden = !port;
+				value.textContent = port || "";
+			};
+
+			const renderServers = (servers) => {
+				if (!serversGrid || !serverTemplate) {
+					return;
+				}
+
+				const cards = servers
+					.filter((server) => typeof(server?.server) === "string" && server.server.trim())
+					.map((server) => {
+						const card = serverTemplate.content.firstElementChild.cloneNode(true);
+						card.querySelector("[data-server-name]").textContent = server.server.trim();
+						card.querySelector("[data-server-role]").textContent = server.role || "server";
+						card.querySelector("[data-server-admin]").textContent = server.admin || "-";
+						card.querySelector("[data-server-location]").textContent = server.location || "-";
+						setServerPort(card, "[data-server-secure-row]", "[data-server-secure-port]", server["port-secure"]);
+						setServerPort(card, "[data-server-insecure-row]", "[data-server-insecure-port]", server["port-insecure"]);
+						return card;
+					});
+
+				if (cards.length === 0) {
+					if (serversStatus) {
+						serversStatus.textContent = "No servers are currently listed.";
+					}
+					return;
+				}
+
+				serversGrid.replaceChildren(...cards);
+			};
+
+			const loadServers = async () => {
+				if (!serversGrid || !serverTemplate) {
+					return;
+				}
+
+				try {
+					const response = await fetch("/json/servers.json", { headers: { Accept: "application/json" } });
+					if (!response.ok) {
+						throw new Error(`Servers returned ${response.status}`);
+					}
+
+					const payload = await response.json();
+					renderServers(Array.isArray(payload.servers) ? payload.servers : []);
+				} catch (error) {
+					if (serversStatus) {
+						serversStatus.textContent = "Server roster could not be loaded.";
+					}
+				}
+			};
+
+			loadServers();
 
 			const presenceList = document.querySelector("[data-presence-list]");
 			const presenceMarquee = document.querySelector("[data-presence-marquee]");

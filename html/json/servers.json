@@ -6,7 +6,8 @@
             "admin": "Syber & Darc",
             "port-insecure": "6667",
             "port-secure": "6697",
-            "location": "Chicago, IL, USA"
+            "location": "Chicago, IL, USA",
+            "isp": "Oracle Cloud"
         },
         {
             "server": "services.tzirc.com",
@@ -14,7 +15,8 @@
             "admin": "Syber & Darc",
             "port-insecure": null,
             "port-secure": null,
-            "location": "Chicago, IL, USA"
+            "location": "Chicago, IL, USA",
+            "isp": "Oracle Cloud"
         },
         {
             "server": "rock.tzirc.com",
@@ -22,7 +24,8 @@
             "admin": "Syber & Darc",
             "port-insecure": "6667",
             "port-secure": "6697",
-            "location": "Internet"
+            "location": "Ashburn, VA, USA",
+            "isp": "Amazon Web Services"
         },
         {
             "server": "ghost.tzirc.com",
@@ -30,7 +33,8 @@
             "admin": "Syber & Darc",
             "port-insecure": "6667",
             "port-secure": "6697",
-            "location": "Internet"
+            "location": "Staten Island, NY, USA",
+            "isp": "Frantech Solutions"
         },
         {
             "server": "whynot.tzirc.com",
@@ -38,11 +42,12 @@
             "admin": "Syber & Darc",
             "port-insecure": "6667",
             "port-secure": "6697",
-            "location": "Internet"
+            "location": "Ashburn, VA, USA",
+            "isp": "Oracle Cloud"
         }
-    ], 
+    ],
     "meta": {
-        "servers": 4,
+        "servers": 5,
         "last_modified": "2026-06-26T09:58:20 PM"
     }
 }
