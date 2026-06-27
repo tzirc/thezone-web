@@ -146,7 +146,12 @@ https://klstats.tzirc.com/api/v1/quotes/quote-search
 
 ### Channels
 
-* Since #TheZone is the only channel currently of note on the network, a section appears inviting others to bring their channel if they wish.
+* The Bring Your Room section displays the latest IRC `/LIST` snapshot from `https://klstats.tzirc.com/api/v1/channels/list?network=TheZoneIRC`, including each channel's nick count and topic. It loads when the page opens and refreshes every 10 minutes.
+* `#thezone` is pinned first. Other live channels are ordered by nick count, then name, while the invitation rows `#your-project` and `#your-crew` remain pinned at the bottom.
+* IRC mode prefixes such as `[+ntr]` are removed from displayed topics. If the API is unavailable, the static channel invitation remains visible.
+* The static fallback uses the compact side-by-side layout. After live channels load, the channel table moves below the invitation copy so long topics have the full panel width.
+* Live topics use the shared NSFW term list and are censored by default. Set `CENSOR_CHANNEL_TOPICS` to `false` in `html/index.htm` to display uncensored API topics; quote API filtering remains enabled independently.
+* Add channel names to `IGNORED_CHANNEL_NAMES` in `html/index.htm` to hide them from the live table. Matching is case-insensitive; `#idlewhores` is ignored by default.
 
 ### Connect 
 
